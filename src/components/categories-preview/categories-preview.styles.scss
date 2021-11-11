@@ -1,0 +1,8 @@
+.home-page__category-preview {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(30rem, min-content));
+    grid-gap: 2rem;
+    place-content: center;
+    grid-row-gap: 2vh;
+    
+}

@@ -1,0 +1,23 @@
+.home-page__category-preview__preview-item{
+   
+   padding: calc(1.5rem + 1.5vw);
+    
+   &--title{
+        text-align: center
+   }
+   
+
+    &--image {
+        
+        
+        
+        max-width: calc(20rem + 12vw);
+        height: 300px;
+        
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        object-fit:cover;
+        
+    }
+}
