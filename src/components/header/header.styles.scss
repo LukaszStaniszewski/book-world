@@ -16,6 +16,9 @@
         &--links {
             display: flex;
             font-size: 1.4rem;
+
+           
+            
             
             &__item {
                 a:link,
@@ -35,6 +38,7 @@
                 a:active {
                     transform: rotateX(90deg);
                 }
+                
 
                 a:link::after,
                 a:visited::after {
@@ -50,9 +54,14 @@
 
             
                 }
+     
+               
             }
+
             
         }
+
+        
     }
         
     

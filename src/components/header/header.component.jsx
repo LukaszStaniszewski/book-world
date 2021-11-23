@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { auth } from "../../firebase/firebase.utils";
+
 
 import './header.styles.scss'
 
-const Header = () => (
+const Header = ({currentUser}) => (
     <header className="header">
         <div className="header__menu">
             
@@ -14,21 +16,25 @@ const Header = () => (
         <nav className="header__nav">
             <ul className="header__nav--links">
                 <li className="header__nav--links__item">
-                    <a href='#' className="header__nav--links__item--category" link-text="Kategorie">
+                    <Link to='/' className="header__nav--links__item--category" link-text="Kategorie">
                         Kategorie
-                    </a>
+                    </Link>
                 </li>
 
                 <li className="header__nav--links__item">
-                    <a href='#' className="header__nav--links__item--sign-in" link-text="Zaloguj się">
-                        Zaloguj się
-                    </a>
+                        {
+                            currentUser ?( 
+                            <div className="header__nav--links__item--sign-in" onClick={() => auth.signOut()} >Wyloguj się</div>
+                            ):(
+                            <Link className="header__nav--links__item--sign-out" to='/sign-in' link-text="Zaloguj się">Zaloguj się</Link>)
+
+                        }  
                 </li>
 
                 <li className="header__nav--links__item">
-                    <a href='#' className="header__nav--links__item--sign-up" link-text="Rejestracja">
+                    <Link  className="header__nav--links__item--sign-up" link-text="Rejestracja" to='/sign-up'>
                          Rejestracja
-                    </a>
+                    </Link>
                 </li>
 
                 <div className="header__nav--cart">

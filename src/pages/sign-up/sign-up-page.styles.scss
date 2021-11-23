@@ -1,0 +1,54 @@
+.sign-up-page {
+    grid-column: center-start / center-end;
+    letter-spacing: 1px;
+
+    display: grid;
+    grid-template-columns: [col-1-start] 0.6fr [col-1-end col-2-start] 0.4fr [col-2-end];
+    grid-template-rows: [row-1-start] 0.21fr [row-1-end row-2-start] 0.79fr [row-2-end];
+
+    &__main {
+        grid-column: col-1-start / col-2-end;
+       
+     
+        padding-top: 2rem;
+
+        // &--title {
+        //     font-weight: 300;
+        //     font-size: 1.4rem;
+
+        // }
+        &--google-sign-in {
+            background-color: #4267b2;
+            color: #fff;
+            border: none;
+            padding: 1rem 1.3rem;
+       
+            min-width: 206px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        &--form{
+           
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            border-top: 1px solid grey;
+
+
+            &--title {
+                font-weight: 300;
+                font-size: 1.4rem;
+                padding-bottom: 2rem;
+               
+               
+            }
+           
+           .group {
+               margin: 0;
+           }
+            
+        }
+    }
+}
