@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
 
+import { selectCurrentUser } from "../../redux/user/user.selector";
 
 import './header.styles.scss'
 
@@ -16,11 +18,17 @@ const Header = ({currentUser}) => (
         <nav className="header__nav">
             <ul className="header__nav--links">
                 <li className="header__nav--links__item">
-                    <Link to='/' className="header__nav--links__item--category" link-text="Kategorie">
-                        Kategorie
+                    <Link to='/' className="header__nav--links__item--category" link-text="Sklep">
+                        Sklep
                     </Link>
                 </li>
 
+                <li className="header__nav--links__item">
+                    <Link to='/' className="header__nav--links__item--contact" link-text="Kontakt">
+                        Kontakt
+                    </Link>
+                </li>
+                
                 <li className="header__nav--links__item">
                         {
                             currentUser ?( 
@@ -48,6 +56,8 @@ const Header = ({currentUser}) => (
     </header>
 )
 
+const mapStateToProps = (state) => ({
+    currentUser: selectCurrentUser(state)
+})
 
-
-export default Header;
+export default connect(mapStateToProps)(Header);

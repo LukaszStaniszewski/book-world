@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app"
-import { getFirestore, doc, getDoc, setDoc, addDoc } from "firebase/firestore"
+import { getFirestore, doc, getDoc, setDoc} from "firebase/firestore"
 import { getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 
 
@@ -24,8 +24,7 @@ if (!userAuth) return
 // const documentSnapshot = userRef.get()
 const userRef = doc(firestore, `users/${userAuth.uid}`)
 const documentSnapshot = await getDoc(userRef)
-console.log('userRef:', documentSnapshot)
-console.log('userAuth:', userAuth)
+
   if (!documentSnapshot.exists()) {
     const {displayName, email} = userAuth;
     const createdAt = new Date();

@@ -4,7 +4,27 @@ const INITIAL_STATE = {
             title: 'fantasy',
             id: 1,
             image: 'https://i.ibb.co/YZgkV09/fantasy.jpg',
-            linkUrl: 'fantasy'
+            linkUrl: 'fantasy',
+            items: [
+                {
+                    id: 10,
+                    name: 'Droga Królów',
+                    author: 'Brandon Sanderson',
+                    price: 10
+                },
+                {
+                    id: 11,
+                    name: 'Słowa Swiatłości',
+                    author: 'Brandon Sanderson',
+                    price: 10
+                },
+                {
+                    id: 12,
+                    name: 'Dawca Przysięgi',
+                    author: 'Brandon Sanderson',
+                    price: 10
+                }
+            ]
         },
         {
             title: 'science fiction',

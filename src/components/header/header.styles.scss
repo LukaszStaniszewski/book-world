@@ -6,9 +6,10 @@
         height: 7rem;
         // jeżeli line-height ma taką samą wartość co height to tekst będzie wycentrowany automatycznie wewnątrz kontenera
         line-height: 7rem;
+        padding-right: calc(2rem + 2vw);
 
         display: flex;
-        justify-content: space-evenly;
+        justify-content: flex-end;
         background-color: green;
         text-transform: uppercase;
         overflow: hidden;
