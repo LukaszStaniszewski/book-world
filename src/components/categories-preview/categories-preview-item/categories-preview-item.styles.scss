@@ -1,23 +1,47 @@
 .home-page__category-preview__preview-item{
    
-   padding: calc(1.5rem + 1.5vw);
+   margin: calc(1.5rem + 1.5vw);
+   position: relative;
+   display: flex;
+   cursor: pointer;
+   justify-content: center;
+   align-items: center;
+   transition: transform 0.4s ease-in-out;
+
+   
     
    &--title{
-        text-align: center
+        position: absolute;
+        
+        border: 0.2rem solid black;
+        font-size: 2rem;
+        
+        padding: 0.5rem 2rem;
+        background-color: whitesmoke;
+        
    }
    
 
     &--image {
-        
-        
-        
-        max-width: calc(20rem + 12vw);
+       
+        width: calc(15rem + 17vw);
         height: 300px;
+        opacity: 0.8;
         
+        border: 1px solid #514644;
+        box-shadow: 0 2px 8px #514644;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        object-fit:cover;
+        object-fit: cover  
         
+       
+        
+
+    }
+
+    &:hover,
+    &:active {
+        transform: scale(1.05);
     }
 }

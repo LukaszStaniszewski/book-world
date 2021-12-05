@@ -1,0 +1,36 @@
+.items-page {
+    
+    grid-column: center-start / center-end;
+
+    display: flex;
+    
+    // grid-template-columns: [col-1-start] 0.33fr [col-1-end col-2-start] 0.33fr [col-2-end col-3-start] 0.33fr [col-3-end];
+    
+    flex-wrap: wrap;
+    
+    // grid-template-rows: [row-start] repeat(auto-fit minmax(min-content 20rem)) [row-end];
+    
+    margin: 0 calc(0.5rem + 6vw);
+    background-color: whitesmoke;
+
+    &--title {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        border-bottom: 1px solid #a49f9e;
+        padding: 2rem 0rem 2rem 0rem;
+        margin: 0 calc(2rem + 2vw);
+        font-size: 1.8rem;
+        
+        letter-spacing: 0.2rem;
+        
+        
+        
+    }
+
+
+   
+   
+    
+
+}

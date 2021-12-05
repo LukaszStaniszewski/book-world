@@ -1,0 +1,80 @@
+
+    .payment-page__main__left {
+      
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      margin-right: calc(1rem + 1.5vw);
+
+     
+      &__details {
+        display: flex;
+        padding: 1rem;
+        &--img {
+
+            justify-content: flex-start;
+
+            
+            width: calc(5rem + 6vw);
+            height: calc(12rem + 5.5vw);
+            padding: 1rem;
+
+
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            
+      } 
+      
+        &__info {
+            display: flex;
+            flex-direction: column;
+            padding-top: 1rem;
+            width: 100%;
+            padding: 0rem calc(0.5rem + 0.7vw );
+            line-height: 2;
+
+            &--name {
+              font-size: 2rem;
+              
+            }
+
+            &--author {
+              font-size: 1.4rem;
+            }
+
+            &--price {
+                color: orange;
+                display: flex;
+                justify-content: flex-end;
+                font-size: 2rem;
+            }
+
+            &__quantity {
+              font-size: 1.8rem;
+              display: flex;
+              justify-content: flex-end;
+
+              &--number {
+                padding: 0rem 1rem;
+                border: 1px solid #a49f9e;
+                margin: 0rem 0.2rem;
+                color: rgba(78, 78, 78, 0.767);
+              }
+
+              &--add, &--remove {
+                cursor: pointer;
+                border: 1px solid #a49f9e;
+                padding: 0rem 1rem;
+              }
+              
+
+              
+            }
+        }
+      }
+
+      
+    }
+    
+    

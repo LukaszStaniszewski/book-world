@@ -1,0 +1,64 @@
+.payment-page {
+    grid-column: container-start / container-end;
+    
+
+    display: grid;
+    grid-template-columns: [left-start]0.65fr [left-end right-start] 0.35fr [right-end];
+   
+    margin: 3rem calc(1rem + 2.2vw);
+    
+    &__empty-cart {
+      grid-column: left-start / left-end; 
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10rem 0rem;
+      font-size: 3rem;
+      background-color: white;
+      margin-right: calc(1rem + 1.5vw);
+      
+    }
+
+
+    &--title { 
+        grid-column: left-start / left-end; 
+      
+        padding: 1rem 2rem;
+        margin-right: calc(1rem + 1.5vw);
+        font-size: 2rem;
+        background-color: white;
+        border-bottom: 1px solid #a49f9e;
+        
+      }
+
+    .payment-page__main {
+      grid-column: left-start / left-end; 
+
+
+        
+    }
+
+    &__right {
+          
+         
+    grid-column: right-start / right-end;
+    grid-row: 1 / 3;
+  
+    display: flex;
+    flex-direction: column;
+    
+    padding: 1rem 2rem;
+    background-color: white;
+
+
+          &--title {
+            font-size: 2rem;
+          }
+
+          &--payment {
+            color: orange;
+            font-size: 2.2rem;
+          }
+    }
+}
