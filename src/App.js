@@ -14,8 +14,15 @@ import PaymentPage from './pages/payment-page/payment-page.component';
 import { selectCurrentUser } from './redux/user/user.selector'
 import {setCurrentUser} from './redux/user/user.action'
 import {updateCategories} from './redux/category/category.action'
+import LoadingIcon from './components/loading-icon/loading-icon.component';
+
+const HomePageLoadingIcon = LoadingIcon(HomePage)
+const PaymetPageLoadingIcon = LoadingIcon(PaymentPage)
 
 class App extends React.Component {
+  state ={
+    loading: true,
+  }
 
 unsubcribeFromAuth = null
 unsubcribeFromSnapShot = null
@@ -41,38 +48,12 @@ componentDidMount() {
     }
   })
 
-  // const collectionRef = onSnapshot(doc(firestore, 'categories'), snapshot => {
-  //   console.log('collectionSnapShot:', snapshot)
-  // })
-
-  // const collectionRef = getDocs(collection(firestore, 'categories'));
-  // collectionRef.onSnapshot(async snapshot => {
-  //   console.log('collectionrefShot:',snapshot)
-  // })
-//   const querySnapshot =  getDocs(collection(firestore, "categories"));
-//   querySnapshot.forEach( (doc) => {
-//     console.log("Current data: ", doc);
-// });
-
-
-  // firestore.collection('categories').get().then((snapshot) => {
-  //   console.log(snapshot.docs)
-  // })
-
-  // onSnapshot(collection(firestore,'categories'), async snapshot => {
-  //   console.log(snapshot.docs)
-  // });
-  
- 
-
-
   getDocs(collection(firestore, "categories")).then((snapshot) => {
-    
-      
+   
       const categoriesMap = converCollectionsSnapshotToMap(snapshot);
       console.log('categoriesMap:',categoriesMap)
-      
       updateCategories(categoriesMap);
+      this.setState({loading: false});
   }).catch((error) => {
     console.log('getCategoriesError:', error)
   });
@@ -84,6 +65,7 @@ componentWillUnmount() {
   this.unsubcribeFromAuth()
 }
   render() {
+    const {loading} = this.state
      return (
     
     <div className="container">
@@ -91,8 +73,8 @@ componentWillUnmount() {
       <Switch>
         <Route exact path='/sign-in' render={() => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInPage/>)}></Route>
         <Route exact path='/sign-up' component={SignUp}></Route>
-        <Route path='/cart/payment' component={PaymentPage}></Route>
-        <Route path='/' component={HomePage}></Route> 
+        <Route path='/cart/payment' render={(props) => <PaymetPageLoadingIcon isLoading={loading} {...props}></PaymetPageLoadingIcon>}></Route>
+        <Route path='/' render={(props) => <HomePageLoadingIcon isLoading={loading} {...props}></HomePageLoadingIcon>}></Route> 
 
        
         
