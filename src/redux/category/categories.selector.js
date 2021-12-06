@@ -7,14 +7,9 @@ export const selectCategories = createSelector (
     category => category.categories
 )
 
-// const tyringhard = fantasy => {createSelector (
-//     [selectCategories],
-//     categories => categories[fantasy]
-// )
-// }
 export const selectCollectionsForPreview = createSelector(
     [selectCategories],
-    categories => Object.keys(categories).map(key => categories[key])
+    categories => categories ? Object.keys(categories).map(key => categories[key]) : []
 
 )
 
@@ -24,7 +19,7 @@ export const selectCollection = categoryUrlParam => {
     return(
     createSelector(
         [selectCategories],
-        categories => categories[categoryUrlParam]            
+        categories => categories ? categories[categoryUrlParam] : null            
     )
     )
 }
