@@ -4,7 +4,7 @@ import { Route} from 'react-router-dom'
 
 import CategoriesPreview from "../../components/categories-preview/categories-preview.component";
 import ItemsPage from "../itemspage/items-page.component";
-
+import itemDetailsPage from "../itemdetails/item-details-page.component";
 
 const HomePage = ({match}) => {
     console.log('match:', match)
@@ -13,8 +13,9 @@ const HomePage = ({match}) => {
         
            
         <Route exact path='/' component={CategoriesPreview}></Route>
-        <Route path={`${match.path}:categoryId`} component={ItemsPage}></Route>
-            
+        
+        <Route  path={`${match.path}:categoryId`} component={ItemsPage}></Route>
+        
         
     </section>
     )

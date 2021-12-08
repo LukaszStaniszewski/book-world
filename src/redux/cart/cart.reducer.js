@@ -4,6 +4,7 @@ import { CartItemQuantity, RemoveItemFromCart} from "./cart.utils";
 const INITIAL_STATE = {
     hidden: true,
     cartItems: [],
+    oneItem: null
 }
 
 const cartReducer = (state=INITIAL_STATE, action) => {
@@ -26,7 +27,14 @@ const cartReducer = (state=INITIAL_STATE, action) => {
                 cartItems: RemoveItemFromCart(state.cartItems, action.payload)
             }
 
-            default:
+            
+        case CartActionTypes.TO_ITEM_DETAILS:
+            return {
+                ...state,
+                oneItem: action.payload
+            }
+
+            default:    
                 return state;
 
     }

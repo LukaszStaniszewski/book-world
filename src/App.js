@@ -11,6 +11,7 @@ import HomePage from './pages/homepage/hompage.component'
 import SignInPage from './pages/sign-in/sign-in-page.component';
 import SignUp from './pages/sign-up/sign-up-page.component';
 import PaymentPage from './pages/payment-page/payment-page.component';
+import itemDetailsPage from './pages/itemdetails/item-details-page.component';
 import { selectCurrentUser } from './redux/user/user.selector'
 import {setCurrentUser} from './redux/user/user.action'
 import {updateCategories} from './redux/category/category.action'
@@ -66,6 +67,7 @@ componentWillUnmount() {
 }
   render() {
     const {loading} = this.state
+    
      return (
     
     <div className="container">
@@ -73,6 +75,7 @@ componentWillUnmount() {
       <Switch>
         <Route exact path='/sign-in' render={() => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInPage/>)}></Route>
         <Route exact path='/sign-up' component={SignUp}></Route>
+        <Route path='/details/:linkUrl' component={itemDetailsPage}/>
         <Route path='/cart/payment' render={(props) => <PaymetPageLoadingIcon isLoading={loading} {...props}></PaymetPageLoadingIcon>}></Route>
         <Route path='/' render={(props) => <HomePageLoadingIcon isLoading={loading} {...props}></HomePageLoadingIcon>}></Route> 
 

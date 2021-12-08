@@ -1,26 +1,34 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addItem } from "../../redux/cart/cart.action";
-
-
+import { addItem, toItemDetails } from "../../redux/cart/cart.action";
+import { withRouter } from 'react-router-dom';
 import './item-frame.styles.scss'
 
 
- 
-const ItemFrame = ({item, addItem}) => {
+
+const ItemFrame = ({item, addItem, toItemDetails, history}) => {
 console.log('item:', item)
-const {image , name , author, price} = item;
-// const {addItem} = addItems;
-// console.log('addItem', addItem)
+const {image , name , author, price, coverType, bookCover} = item;
+
+const bookCoverType = () => {
+if (coverType === undefined) {
+    return bookCover
+}  return coverType
+}
+
+const linkUrl = `${name.toLowerCase().replaceAll('.', '-').replaceAll(' ','-')}-${author.toLowerCase().replaceAll(' ', '-')}`
+
+console.log('link:', linkUrl)
+
 return (
     <div className="items-page__frame">
-        <div className='items-page__frame--info'>
-                <img className="items-page__frame--info--image" src={image} alt="" />    
+        <div className='items-page__frame--info' onClick={()=> toItemDetails(item)}  >
+                <img className="items-page__frame--info--image"  onClick={() => history.push(`details/${linkUrl}`)} src={image} alt="" />    
                 <div className="items-page__frame--info__item-details">
                     <button className="items-page__frame--info__item-details--button" onClick={() => addItem(item)}>Dodaj do koszyka</button>
                     <h3 className="items-page__frame--info__item-details--title">{name}</h3>
                     <p className="items-page__frame--info__item-details--author">{author}</p>
-                    <p className="items-page__frame--info__item-details--book-cover">rodzaj okładki</p>
+                    <p className="items-page__frame--info__item-details--book-cover">rodzaj okładki: {bookCoverType()}</p>
                     <p className="items-page__frame--info__item-details--price">{price} zł</p>
                 </div>
         </div>
@@ -29,9 +37,12 @@ return (
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addItem: (item) => dispatch(addItem(item))
+    addItem: (item) => dispatch(addItem(item)),
+    toItemDetails: (item) => dispatch(toItemDetails(item))
 })
 
-export default connect(null, mapDispatchToProps)(ItemFrame);
+// export default compose(withRouter, connect(null, mapDispatchToProps)(ItemFrame));
+
+export default withRouter(connect(null, mapDispatchToProps)(ItemFrame));
 
 
