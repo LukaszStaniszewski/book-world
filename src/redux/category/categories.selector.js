@@ -24,3 +24,7 @@ export const selectCollection = categoryUrlParam => {
     )
 }
 
+export const selectNameAndAuthor = createSelector(
+    [selectCollectionsForPreview],
+    categories => categories.map(({id, items}) => (items))
+)

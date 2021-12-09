@@ -148,7 +148,7 @@ const categoryReducer = ( state = INITIAL_STATE, action) => {
                 categories: action.payload,
             };
         default:
-            console.log('categoryReducerState:',state)
+           
             return state
     }
 }

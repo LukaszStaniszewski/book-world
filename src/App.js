@@ -12,6 +12,7 @@ import SignInPage from './pages/sign-in/sign-in-page.component';
 import SignUp from './pages/sign-up/sign-up-page.component';
 import PaymentPage from './pages/payment-page/payment-page.component';
 import itemDetailsPage from './pages/itemdetails/item-details-page.component';
+import Footer from './components/footer/footer.component';
 import { selectCurrentUser } from './redux/user/user.selector'
 import {setCurrentUser} from './redux/user/user.action'
 import {updateCategories} from './redux/category/category.action'
@@ -31,10 +32,13 @@ unsubcribeFromSnapShot = null
 componentDidMount() {
   const {setCurrentUser} = this.props;
   const {updateCategories} = this.props;
+
+  /*************** Creating user profile, saving it in Firestore, then fetching user data to app ******************/
   this.unsubcribeFromAuth = auth.onAuthStateChanged( async userAuth =>{
     if(userAuth) {
     
       await CreateUserProfileDocument(userAuth);
+      alert('Twoje konto zostało utworzone')
       onSnapshot(doc(firestore, 'users', userAuth.uid), doc => {
         setCurrentUser({
           
@@ -48,6 +52,8 @@ componentDidMount() {
       setCurrentUser(userAuth)
     }
   })
+
+  /**************  Fetching shop data from Firestore    *****************/
 
   getDocs(collection(firestore, "categories")).then((snapshot) => {
    
@@ -77,12 +83,9 @@ componentWillUnmount() {
         <Route exact path='/sign-up' component={SignUp}></Route>
         <Route path='/details/:linkUrl' component={itemDetailsPage}/>
         <Route path='/cart/payment' render={(props) => <PaymetPageLoadingIcon isLoading={loading} {...props}></PaymetPageLoadingIcon>}></Route>
-        <Route path='/' render={(props) => <HomePageLoadingIcon isLoading={loading} {...props}></HomePageLoadingIcon>}></Route> 
-
-       
-        
+        <Route path='/' render={(props) => <HomePageLoadingIcon isLoading={loading} {...props}></HomePageLoadingIcon>}></Route>   
       </Switch>  
-     
+     <Footer></Footer>
     </div>
   );
   }

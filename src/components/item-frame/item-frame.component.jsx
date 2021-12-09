@@ -41,6 +41,7 @@ const mapDispatchToProps = (dispatch) => ({
     toItemDetails: (item) => dispatch(toItemDetails(item))
 })
 
+
 // export default compose(withRouter, connect(null, mapDispatchToProps)(ItemFrame));
 
 export default withRouter(connect(null, mapDispatchToProps)(ItemFrame));

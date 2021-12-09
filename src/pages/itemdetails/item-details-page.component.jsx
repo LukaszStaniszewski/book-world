@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import './item-details-page.styles.scss'
 import { Link} from 'react-router-dom'
 import { selectCurrentItem } from "../../redux/cart/cart.selector";
+import { addItem } from "../../redux/cart/cart.action";
 import ItemOverview from "../../components/item-overview/item-overview.component";
 
 
-const ItemDetailsPage = ({oneItem}) => {
+const ItemDetailsPage = ({oneItem, addItem}) => {
     console.log('ItemDetailsPage;' , oneItem)
     const {name, author, image, price, coverType, series, pages} = oneItem;
     // const {linkUrl} = oneItem
@@ -44,7 +45,7 @@ const ItemDetailsPage = ({oneItem}) => {
                             <span className='item-details-page__right__book-price__frame--span-1'>Odbiór w salonie: 0zł</span>
                             <span className='item-details-page__right__book-price__frame--span-2'>Darmowa dostawa od 40zł</span>
                             <span className='item-details-page__right__book-price__frame--span-3'>Wysyłamy w 24 godziny</span>
-                            <button className="item-details-page__right__book-price__frame--button">Dodaj do koszyka</button>
+                            <button className="item-details-page__right__book-price__frame--button" onClick={() => addItem(oneItem)}>Dodaj do koszyka</button>
                             
                         </div>
                 </div>
@@ -67,4 +68,8 @@ const mapStateToProps = (state) => ({
     oneItem: selectCurrentItem(state)
 })
 
-export default  connect(mapStateToProps)(ItemDetailsPage)
+const mapDispatchToProps = (dispatch) => ({
+    addItem: (item) => dispatch(addItem(item)) 
+})
+
+export default  connect(mapStateToProps, mapDispatchToProps)(ItemDetailsPage)

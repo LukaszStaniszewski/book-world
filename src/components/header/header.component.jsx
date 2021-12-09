@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 import { selectHiddenStatus } from "../../redux/cart/cart.selector";
 import CartToggle from "../cart-toggle/cart-toggle.component";
-import  CartDropdown  from "../cart-dropdown/cart-dropdown.component";
+import CartDropdown  from "../cart-dropdown/cart-dropdown.component";
+
 
 import './header.styles.scss'
 
@@ -16,9 +17,11 @@ const Header = ({currentUser, hidden}) => (
             
         </div>
         <div className="header__overlay">
-
+        
         </div>
         <nav className="header__nav">
+            
+
             <ul className="header__nav--links">
                 <li className="header__nav--links__item">
                     <Link to='/' className="header__nav--links__item--category link-color" link-text="Sklep">
