@@ -1,0 +1,160 @@
+.item-details-page {
+    grid-column: container-start / container-end;
+
+    display: grid;
+    grid-template-columns: 8vw [main-start] 0.7fr [main-end right-start] 0.3fr [right-end] 8vw;
+
+    
+    &__links {
+        grid-column: main-start / main-end;
+        grid-row: 1 / 2;
+        padding: 1rem 0rem;
+        
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+
+
+        span {
+            margin: 0 1rem;
+        }
+
+       
+
+        
+    }
+
+    &__main {
+        grid-column: main-start / main-end;
+
+        display: flex;
+
+        &__img-container {
+        background-color: white;
+
+            &--image{
+            margin: 2rem 5rem;
+            // width: calc(5rem + 10vw);
+            // height: calc(12rem + 11vw);
+            max-width: 330px;
+            max-height: 330px;
+
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            cursor: pointer;    
+            }
+            
+        }
+
+        &__info {
+            width: 100%;
+            margin: 0 3rem;
+
+            &--title {
+                font-size: 2.2rem;
+                border-bottom: 1px solid #a49f9e;
+                letter-spacing: 0.2rem;
+                padding-bottom: 1rem;
+                
+                
+            }
+
+            span:first-child {
+                color: grey;
+            }
+
+            &--author,
+            &--series,
+            &--pages {
+                font-size: 1.2rem;
+                letter-spacing: 0.1rem;
+                margin-top: 2rem;
+            }
+        }
+    }
+
+    &__right {
+        grid-column: right-start / right-end;
+        margin-left: calc(1rem + 3vw);
+        
+        &__book-price {
+            position: fixed;
+            background-color: #eb540f;
+            width: 21rem;
+            padding: 26px 19px 20px 19px;
+            border: 1px solid #d0400c;
+            
+            
+            &--cover-type{
+                display: flex;
+                justify-content: center;
+                font-size: 1.2rem;
+                color: #d0400c;
+                background-color: white;
+                padding: 2 3rem;
+                border-radius: 0.3rem;
+            }
+
+            &__frame {
+            background-color: white; 
+            border-radius: 0.3rem;
+            
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            padding: 1rem;
+          
+            margin-top: 1rem;
+                
+                &--price {
+                display: flex;
+                justify-content: center;
+                
+                font-size: 2.2rem;
+                
+                margin: 1rem 0rem;
+                border-radius: 0.3rem;
+                font-weight: 600;
+                        
+                } 
+
+                &--span-1,
+                &--span-2,
+                &--span-3 {
+                display: block;
+                line-height: 2rem;
+                text-align: left;
+                }
+
+                &--span-3 {
+                    color: green;
+                }
+
+                &--button {
+                    
+
+                    border-radius: 0.3rem;
+                    background-color: #fc7c41;
+                    border: none;
+                    color: white;
+                    padding: 0.5rem;
+                    margin: 1rem 0rem 0.5rem 0rem;
+                     
+                }
+            }
+           
+        }
+    }
+
+    &__description {
+        grid-column: main-start / main-end;
+
+        margin-top: 4rem;
+        font-size: 1.2rem;
+        letter-spacing: 0.05rem;
+        
+    }
+
+}

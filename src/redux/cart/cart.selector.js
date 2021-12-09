@@ -12,6 +12,11 @@ export const selectHiddenStatus = createSelector (
     cart => cart.hidden
 )
 
+export const selectCurrentItem = createSelector (
+    [selectItem],
+    cart => cart.oneItem
+)
+
 export const selectCartsPrice = createSelector (
     [selectCurrentItems],
     cartItems => cartItems.reduce((accumulatedValue, currentValue) =>

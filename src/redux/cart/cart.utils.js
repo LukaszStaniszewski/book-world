@@ -17,23 +17,23 @@ export const ItemCount = (item) => (
        
 )
 
-export const RemoveItemFromCart = (cartItems, removeItem) => {
+export const RemoveOneItemFromCart = (cartItems, removeItem) => {
   const existingCartItem = 
   cartItems.find(item => item.id === removeItem.id)
 
-  if (existingCartItem) {
-      return cartItems.map(cartItem =>
-          cartItem.id === removeItem.id ? 
-          {...cartItem, quantity: cartItem.quantity - 1}
-          : cartItem)
+  if (existingCartItem.quantity <= 1) {
+     return cartItems.filter(item => item.id !== removeItem.id) 
   }
 
-  return[...cartItems]
+  return cartItems.map(cartItem =>
+    cartItem.id === removeItem.id ? 
+    {...cartItem, quantity: cartItem.quantity - 1}
+    : cartItem)
+
+  
 }
 
-
-     
-      
+  
       
     
    
