@@ -38,7 +38,6 @@ componentDidMount() {
     if(userAuth) {
     
       await CreateUserProfileDocument(userAuth);
-      alert('Twoje konto zostało utworzone')
       onSnapshot(doc(firestore, 'users', userAuth.uid), doc => {
         setCurrentUser({
           

@@ -20,7 +20,7 @@ const ItemsPage = ({match, category}) => {
                 
                     {
                         items.map((item) =>(
-                           <ItemFrame key={item.id} item={item}></ItemFrame> 
+                           <ItemFrame key={item.id} item={item} title={category.title} url={category.linkUrl}></ItemFrame> 
                         ))
                     }
                     

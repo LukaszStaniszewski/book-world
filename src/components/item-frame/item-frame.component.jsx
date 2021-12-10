@@ -6,10 +6,11 @@ import './item-frame.styles.scss'
 
 
 
-const ItemFrame = ({item, addItem, toItemDetails, history}) => {
+const ItemFrame = ({item, addItem, toItemDetails, history, title, url}) => {
 console.log('item:', item)
 const {image , name , author, price, coverType, bookCover} = item;
-
+const itemTwo = {title: title, item: item, url: url}
+console.log('itemTwo:', itemTwo)
 const bookCoverType = () => {
 if (coverType === undefined) {
     return bookCover
@@ -22,7 +23,7 @@ console.log('link:', linkUrl)
 
 return (
     <div className="items-page__frame">
-        <div className='items-page__frame--info' onClick={()=> toItemDetails(item)}  >
+        <div className='items-page__frame--info' onClick={()=> toItemDetails(itemTwo)}  >
                 <img className="items-page__frame--info--image"  onClick={() => history.push(`details/${linkUrl}`)} src={image} alt="" />    
                 <div className="items-page__frame--info__item-details">
                     <button className="items-page__frame--info__item-details--button" onClick={() => addItem(item)}>Dodaj do koszyka</button>
@@ -40,7 +41,6 @@ const mapDispatchToProps = (dispatch) => ({
     addItem: (item) => dispatch(addItem(item)),
     toItemDetails: (item) => dispatch(toItemDetails(item))
 })
-
 
 // export default compose(withRouter, connect(null, mapDispatchToProps)(ItemFrame));
 
