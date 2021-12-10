@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword } from "@firebase/auth";
 import React from "react";
 import { auth, CreateUserProfileDocument, signInWithGoogle } from "../../firebase/firebase.utils";
 
+import {ReactComponent as GoogleIcon} from '../../resources/google-icon.svg'
 import FormInput from "../../components/form-input/form-input.component";
 
 import './sign-up-page.styles.scss'
@@ -47,15 +48,15 @@ constructor(props) {
     render() {
         return(
             <section className='sign-up-page'>
-                {/* <div className='sign-up-page__google-sign-in'>
-                    <span>Kontynuuj z:</span>
-                    <button className='sign-in-page__google-sign-in--button' onClick={signInWithGoogle}>Zaloguj się przez Google</button>       
-                </div> */}
+               
                 <div className='sign-up-page__main'>
-                    <button className='sign-up-page__main--google-sign-in' onClick={signInWithGoogle}>Zaloguj się z Google</button>
+                    <div className='sign-up-page__main__google-sign-in'>
+                        <button className='sign-up-page__main__google-sign-in--button' onClick={signInWithGoogle}>Zaloguj się z Google</button>
+                        <GoogleIcon className='sign-up-page__main__google-sign-in--icon'></GoogleIcon>
+                    </div>
                     <form className='sign-up-page__main--form' onSubmit={this.handleSubmit}>
                         <h3 className='sign-up-page__main--form--title'>Rejestracja</h3>
-                        <FormInput
+                        <FormInput 
                             type='text'
                             name='displayName'
                             value={this.state.displayName}
@@ -91,7 +92,7 @@ constructor(props) {
                             required
                         />
     
-                        <button type='submit'>Zarejestruj się</button>
+                        <button className='sign-up-page__main--form--submit-button' type='submit'>Zarejestruj się</button>
                         
                     </form>
                 </div>

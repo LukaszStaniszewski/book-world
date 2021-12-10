@@ -1,6 +1,8 @@
 import React from "react";
 import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import {ReactComponent as GoogleIcon} from '../../resources/google-icon.svg'
 
 import FormInput from "../../components/form-input/form-input.component";
 import './sign-in-page.styles.scss'
@@ -39,11 +41,15 @@ class SignInPage extends React.Component {
     }
 
     render() {
+        const {history} = this.props
         return( 
     <section className='sign-in-page'>
         <div className='sign-in-page__google-sign-in'>
-            <span>Kontynuuj z:</span>
-            <button className='sign-in-page__google-sign-in--button'  onClick={signInWithGoogle}>Zaloguj się przez Google</button>       
+            <span className='sign-in-page__google-sign-in--title'>Kontynuuj z:</span>
+            <div className='sign-in-page__google-sign-in__frame'>
+                <button className='sign-in-page__google-sign-in__frame--button'  onClick={signInWithGoogle}>Zaloguj się z Google</button>       
+                <GoogleIcon className='sign-in-page__google-sign-in__frame--icon'></GoogleIcon>
+            </div>
         </div>
        <div className='sign-in-page__left'>
            <span>Zaloguj się</span>  
@@ -69,11 +75,11 @@ class SignInPage extends React.Component {
                 
                 />
     
-                <button type='submit'>Zaloguj się</button>
+                <button className='sign-in-page__left--form--submit-button' type='submit'>Zaloguj się</button>
                 
     
             </form>
-            <Link>Nie pamiętasz hasła? Kliknij tutaj</Link>
+            
        </div>
         <div className='sign-in-page__right'>
             <h3>Zarejestruj się</h3>
@@ -84,11 +90,11 @@ class SignInPage extends React.Component {
                 <li>brak konieczności wprowadzania swoich danych przy kolejnych zakupach</li>
                 <li>możliwość otrzymania rabatów i kuponów promocyjnych</li>
             </ul>
-            <button>Zarejestruj się</button>
+            <button className='sign-in-page__left--form--submit-button' onClick={() => history.push('/sign-up')}>Zarejestruj się</button>
         </div>   
     </section>
             )
     }
 }
 
-export default SignInPage;
+export default withRouter(SignInPage);

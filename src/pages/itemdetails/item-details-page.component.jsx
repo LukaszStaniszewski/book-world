@@ -4,12 +4,13 @@ import './item-details-page.styles.scss'
 import { Link} from 'react-router-dom'
 import { selectCurrentItem } from "../../redux/cart/cart.selector";
 import { addItem } from "../../redux/cart/cart.action";
-import ItemOverview from "../../components/item-overview/item-overview.component";
 
 
 const ItemDetailsPage = ({oneItem, addItem}) => {
+    
     console.log('ItemDetailsPage;' , oneItem)
-    const {name, author, image, price, coverType, series, pages} = oneItem;
+   
+    const {name, author, image, price, coverType, series, pages} = oneItem.item;
     // const {linkUrl} = oneItem
     return (
         <section className='item-details-page'>
@@ -17,7 +18,7 @@ const ItemDetailsPage = ({oneItem, addItem}) => {
             <div className='item-details-page__links'>
                 <Link to='/'>Sklep book-world</Link>
                 <span> / </span>
-                <Link to='/'>Fantastyka</Link>
+                <Link to={`/${oneItem.url}`}>{oneItem.title}</Link>
             </div>
             
             <div className = 'item-details-page__main'>
@@ -45,7 +46,7 @@ const ItemDetailsPage = ({oneItem, addItem}) => {
                             <span className='item-details-page__right__book-price__frame--span-1'>Odbiór w salonie: 0zł</span>
                             <span className='item-details-page__right__book-price__frame--span-2'>Darmowa dostawa od 40zł</span>
                             <span className='item-details-page__right__book-price__frame--span-3'>Wysyłamy w 24 godziny</span>
-                            <button className="item-details-page__right__book-price__frame--button" onClick={() => addItem(oneItem)}>Dodaj do koszyka</button>
+                            <button className="item-details-page__right__book-price__frame--button" onClick={() => addItem(oneItem.item)}>Dodaj do koszyka</button>
                             
                         </div>
                 </div>
@@ -65,6 +66,7 @@ const ItemDetailsPage = ({oneItem, addItem}) => {
 }
 
 const mapStateToProps = (state) => ({
+  
     oneItem: selectCurrentItem(state)
 })
 
