@@ -6,3 +6,19 @@
     grid-row-gap: 2vh;
     
 }
+
+@media screen and (max-width: 1050px) {
+    .home-page__category-preview{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(30rem, min-content));     
+    }
+    
+}
+
+@media screen and (max-width: 400px) {
+    .home-page__category-preview{
+    display: flex;
+    flex-direction: column;
+    }
+    
+}

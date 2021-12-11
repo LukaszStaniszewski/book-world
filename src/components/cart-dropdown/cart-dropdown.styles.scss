@@ -63,7 +63,7 @@
         border-bottom: 1px solid #a49f9e;
         padding: 1rem;
         margin: 0.5rem;
-        width: 100%;
+        
         
         &--name {
         
@@ -74,10 +74,10 @@
         &--img {
             max-width: 50px;
             max-height: 80px;
-            object-fit: cover  
+             
         }
         &__right {
-            margin-right: 0.5rem;
+            margin-right: 0.3rem;
            
         
             &--item-count {

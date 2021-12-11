@@ -52,11 +52,30 @@
     background-color: white;
 
 
+          &__stripe-payment {
+          font-size: 1.2rem;
+          
+         
+         
+          &--message {
+            padding-top: 1rem;
+            color: red;
+            font-weight: 600;
+
+            &--data {
+              font-weight: normal;
+            }
+            
+          }
+            
+          }
+
+
           &--title {
             font-size: 2rem;
           }
 
-          &--payment {
+          &--amount {
             color: orange;
             font-size: 2.2rem;
           }

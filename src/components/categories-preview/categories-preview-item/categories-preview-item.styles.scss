@@ -7,7 +7,7 @@
    justify-content: center;
    align-items: center;
    transition: transform 0.4s ease-in-out;
-
+   
    
     
    &--title{
@@ -44,4 +44,19 @@
     &:active {
         transform: scale(1.05);
     }
+}
+
+@media screen and (max-width: 400px) {
+   
+    .home-page__category-preview__preview-item{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+
+        &--image {
+            width: calc(19rem + 31vw);
+            height: 25rem;
+        }
+    }
+    
 }
