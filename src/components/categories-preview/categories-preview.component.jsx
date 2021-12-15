@@ -5,9 +5,6 @@ import { selectCollectionsForPreview} from '../../redux/category/categories.sele
 import CategoriesPreviewItem from "./categories-preview-item/categories-preview-item.component";
 
 const CategoriesPreview = ({category}) => {
-    console.log('category preview:', category)
-    // const [fantasy] = category
-    // let coco = Object.keys(fantasy).map(key => fantasy[key])
     
     return (
     <div className ='home-page__category-preview'>

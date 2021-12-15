@@ -7,7 +7,7 @@ import './item-frame.styles.scss'
 
 
 const ItemFrame = ({item, addItem, toItemDetails, history, title, url}) => {
-console.log('item:', item)
+
 const {image , name , author, price, coverType, bookCover} = item;
 
 
@@ -41,8 +41,6 @@ const mapDispatchToProps = (dispatch) => ({
     addItem: (item) => dispatch(addItem(item)),
     toItemDetails: (item) => dispatch(toItemDetails(item))
 })
-
-// export default compose(withRouter, connect(null, mapDispatchToProps)(ItemFrame));
 
 export default withRouter(connect(null, mapDispatchToProps)(ItemFrame));
 

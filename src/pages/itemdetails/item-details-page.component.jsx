@@ -7,11 +7,9 @@ import { addItem, toggleHiddenImage } from "../../redux/cart/cart.action";
 
 
 const ItemDetailsPage = ({oneItem, addItem, hiddenImage, toggleHiddenImage}) => {
-    
-    console.log('ItemDetailsPage;' , oneItem)
-   
+
     const {name, author, image, price, coverType, series, pages} = oneItem.item;
-    // const {linkUrl} = oneItem
+    
     return (
         <section className='item-details-page'>
             

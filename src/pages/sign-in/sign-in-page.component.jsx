@@ -1,6 +1,6 @@
 import React from "react";
 import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
-import { Link } from "react-router-dom";
+
 import { withRouter } from "react-router-dom";
 import {ReactComponent as GoogleIcon} from '../../resources/google-icon.svg'
 

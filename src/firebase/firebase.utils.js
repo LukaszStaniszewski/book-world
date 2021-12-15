@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app"
-import { getFirestore, doc, getDoc, setDoc, getDocs, collection} from "firebase/firestore"
+import { getFirestore, doc, getDoc, setDoc} from "firebase/firestore"
 import { getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 
 
@@ -41,19 +41,6 @@ const documentSnapshot = await getDoc(userRef)
   }
   return userRef;
 }
-
-// const readSingleCollection = async () => {
-
-// const querySnapshot = await getDocs(collection(firestore, "categories"));
-// querySnapshot.forEach((doc) => {
-
-//   console.log(doc.id, " => ", doc.data());
-// });
-
-// }
-
-// readSingleCollection()
-
 
 export const converCollectionsSnapshotToMap = (categories) => {
   const transformedCollection = categories.docs.map(doc => {
