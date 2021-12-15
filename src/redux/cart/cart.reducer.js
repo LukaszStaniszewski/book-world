@@ -3,6 +3,7 @@ import { CartItemQuantity, RemoveOneItemFromCart, DeleteItemFromCart} from "./ca
 
 const INITIAL_STATE = {
     hidden: true,
+    hiddenImage: true,
     cartItems: [],
     oneItem: null,
   
@@ -15,6 +16,12 @@ const cartReducer = (state=INITIAL_STATE, action) => {
                 ...state,
                 hidden: !state.hidden
             }
+
+        case CartActionTypes.TOGGLE_HIDDEN_IMAGE: 
+        return {
+            ...state,
+            hiddenImage: !state.hiddenImage
+        }    
             
         case CartActionTypes.ADD_ITEM:
             return {

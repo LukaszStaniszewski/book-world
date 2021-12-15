@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import './item-details-page.styles.scss'
 import { Link} from 'react-router-dom'
-import { selectCurrentItem } from "../../redux/cart/cart.selector";
-import { addItem } from "../../redux/cart/cart.action";
+import { selectCurrentItem, selectHiddenStatusOfImage } from "../../redux/cart/cart.selector";
+import { addItem, toggleHiddenImage } from "../../redux/cart/cart.action";
 
 
-const ItemDetailsPage = ({oneItem, addItem}) => {
+const ItemDetailsPage = ({oneItem, addItem, hiddenImage, toggleHiddenImage}) => {
     
     console.log('ItemDetailsPage;' , oneItem)
    
@@ -21,10 +21,10 @@ const ItemDetailsPage = ({oneItem, addItem}) => {
                 <Link to={`/${oneItem.url}`}>{oneItem.title}</Link>
             </div>
             
-            <div className = 'item-details-page__main'>
-                <div className='item-details-page__main__img-container'>
-                  <img className='item-details-page__main__img-container--image' 
-                  src={image} alt="" />  
+            <div className = {hiddenImage ? 'item-details-page__main hidden-active' : 'item-details-page__main'}>
+                <div className='item-details-page__main__img-container' onClick={toggleHiddenImage}>
+                  <img className='item-details-page__main__img-container--image'
+                  src={image} alt=""  />  
                 </div>
                 <div className='item-details-page__main__info'>
                    <div className= 'item-details-page__main__info--title'>{name}</div>
@@ -66,12 +66,13 @@ const ItemDetailsPage = ({oneItem, addItem}) => {
 }
 
 const mapStateToProps = (state) => ({
-  
+    hiddenImage:  selectHiddenStatusOfImage(state),
     oneItem: selectCurrentItem(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    addItem: (item) => dispatch(addItem(item)) 
+    addItem: (item) => dispatch(addItem(item)), 
+    toggleHiddenImage: () => dispatch(toggleHiddenImage())
 })
 
 export default  connect(mapStateToProps, mapDispatchToProps)(ItemDetailsPage)

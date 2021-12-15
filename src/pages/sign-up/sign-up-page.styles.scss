@@ -2,20 +2,15 @@
     grid-column: center-start / center-end;
     letter-spacing: 1px;
 
+    min-height: 75vh;
     
-   
 
     &__main {
     margin: 2rem 15rem 0rem 15rem;  
     background-color: white;
-     
+    
     padding: 2rem 3rem;
 
-        // &--title {
-        //     font-weight: 300;
-        //     font-size: 1.4rem;
-
-        // }
         
         &__google-sign-in {
         position: relative;
@@ -96,5 +91,55 @@
 
             
         }
+
+        @media screen and (max-width: 1000px) {
+            
+            &__main {
+                margin: 2rem 10vw 0rem 10vw;    
+
+                &--form {
+                    padding: 2rem calc(10rem + 10vw);
+                }
+            }
+        }
+
+        
+        @media screen and (max-width: 820px) {
+            
+            &__main {
+                margin: 2rem 7vw 0rem 7vw;    
+
+                &--form {
+                    padding: 2rem calc(5rem + 10vw);
+                }
+            }
+        }
+
+        @media screen and (max-width: 620px) {
+            
+            &__main {
+                margin: 2rem 7vw 0rem 3vw;    
+
+                &--form {
+                    padding: 2rem calc(3rem + 10vw);
+                }
+            }
+        }
+
+        @media screen and (max-width: 430px) {
+            
+            &__main {
+                margin: 1vw;    
+
+                &--form {
+                    padding: 2rem 3vw;
+
+                    &--title {
+                        padding-bottom: 0.5rem;
+                    }
+                }
+            }
+        }
+
     
 }

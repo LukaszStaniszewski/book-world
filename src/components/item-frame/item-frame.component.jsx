@@ -9,14 +9,14 @@ import './item-frame.styles.scss'
 const ItemFrame = ({item, addItem, toItemDetails, history, title, url}) => {
 console.log('item:', item)
 const {image , name , author, price, coverType, bookCover} = item;
-const itemTwo = {title: title, item: item, url: url}
-console.log('itemTwo:', itemTwo)
+
+
 const bookCoverType = () => {
 if (coverType === undefined) {
     return bookCover
 }  return coverType
 }
-
+const itemTwo = {title: title, item: item, url: url}
 const linkUrl = `${name.toLowerCase().replaceAll('.', '-').replaceAll(' ','-')}-${author.toLowerCase().replaceAll(' ', '-')}`
 
 console.log('link:', linkUrl)

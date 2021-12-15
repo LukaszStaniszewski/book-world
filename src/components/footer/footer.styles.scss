@@ -30,3 +30,28 @@
         font-weight: 600;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .footer {
+        margin-top: 3rem;
+        padding: 1rem 1.5rem;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .footer{
+        padding: 1rem 0.5rem;
+        &__frame{
+           font-size: 1.2rem; 
+
+           &--about-us li:first-child,
+           &--delivery li:first-child,
+           &--statute li:first-child {
+               font-weight: 600;
+               font-size: 1.3rem;
+           }
+
+        }
+        
+    }
+}

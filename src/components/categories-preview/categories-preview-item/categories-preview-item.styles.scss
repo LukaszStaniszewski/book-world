@@ -46,13 +46,13 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 430px) {
    
     .home-page__category-preview__preview-item{
     display: flex;
     flex-direction: column;
     margin: 1rem;
-
+    
         &--image {
             width: calc(19rem + 31vw);
             height: 25rem;
