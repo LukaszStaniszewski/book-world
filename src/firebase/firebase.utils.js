@@ -55,8 +55,6 @@ export const converCollectionsSnapshotToMap = (categories) => {
     }
   })
 
-  console.log('proba:', transformedCollection)
-
   return transformedCollection.reduce((accumulator, category) => {
     accumulator[category.linkUrl] = category;
     return accumulator;

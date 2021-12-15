@@ -177,7 +177,7 @@
 
 
 
-            &__item {
+            &__item  {
              
                 a:link,
                 a:visited {
@@ -212,7 +212,6 @@
 
 
                 }
-
 
                 &:nth-child(odd) {
                     animation: downwards 1s forwards;

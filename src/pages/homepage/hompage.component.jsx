@@ -4,7 +4,7 @@ import { Route} from 'react-router-dom'
 
 import CategoriesPreview from "../../components/categories-preview/categories-preview.component";
 import ItemsPage from "../itemspage/items-page.component";
-import itemDetailsPage from "../itemdetails/item-details-page.component";
+
 
 const HomePage = ({match}) => {
  

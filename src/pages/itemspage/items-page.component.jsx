@@ -6,9 +6,7 @@ import './items-page.styles.scss'
 import ItemFrame from "../../components/item-frame/item-frame.component";
 
 const ItemsPage = ({match, category}) => {
-    console.log('category-itemsPage', category)
-    console.log('Items page match:', match)
-    console.log('CategoryId:', match.params.collectionId);
+
     const {items} = category
     return(
         <section className='items-page'>

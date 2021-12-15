@@ -34,8 +34,6 @@ class Header extends React.Component  {
     }
     
     onMouseEnter = () => {
-        // this.state.dropdownMenu == null ? this.setState({dropdownMenu: 'hover-dropdown-menu'})
-        //  : this.setState({dropdownMenu: null})
         this.setState({dropdownMenu: 'hover-dropdown-menu-active'})
     }
     onMouseLeave = () => {
@@ -46,8 +44,6 @@ class Header extends React.Component  {
     const {currentUser} = this.props
     const {hidden} = this.props
     
-    console.log('active:', this.state)
-
     return (
     
     <header className="header">
@@ -111,7 +107,7 @@ class Header extends React.Component  {
                 <li className="header__nav--links__item">
                         {
                             currentUser ?( 
-                            <div className="header__nav--links__item--sign-in link-color" onClick={() => auth.signOut()} >Wyloguj się</div>
+                            <a href="#" className="header__nav--links__item--sign-in link-color" link-text="Wyloguj się" onClick={() => auth.signOut()} >Wyloguj się</a>
                             ):(
                             <Link className="header__nav--links__item--sign-out link-color" to='/sign-in' link-text="Zaloguj się">Zaloguj się</Link>)
 

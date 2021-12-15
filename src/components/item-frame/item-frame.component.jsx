@@ -19,7 +19,6 @@ if (coverType === undefined) {
 const itemTwo = {title: title, item: item, url: url}
 const linkUrl = `${name.toLowerCase().replaceAll('.', '-').replaceAll(' ','-')}-${author.toLowerCase().replaceAll(' ', '-')}`
 
-console.log('link:', linkUrl)
 
 return (
     <div className="items-page__frame">
