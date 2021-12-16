@@ -17,7 +17,7 @@ import { selectCurrentUser } from './redux/user/user.selector'
 import {setCurrentUser} from './redux/user/user.action'
 import {updateCategories} from './redux/category/category.action'
 import LoadingIcon from './components/loading-icon/loading-icon.component';
-
+import ScrollButton from './components/scroll-button/scroll-button.component';
 const HomePageLoadingIcon = LoadingIcon(HomePage)
 const PaymetPageLoadingIcon = LoadingIcon(PaymentPage)
 
@@ -63,13 +63,16 @@ componentDidMount() {
   }).catch((error) => {
     console.log('getCategoriesError:', error)
   });
-
-  
+ 
 }
 
 componentWillUnmount() {
   this.unsubcribeFromAuth()
+  
 }
+
+
+
   render() {
     const {loading} = this.state
     
@@ -77,6 +80,7 @@ componentWillUnmount() {
     
     <div className="container">
      <Header></Header>
+     <ScrollButton></ScrollButton>
       <Switch>
         <Route exact path='/sign-in' render={() => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInPage/>)}></Route>
         <Route exact path='/sign-up' component={SignUp}></Route>

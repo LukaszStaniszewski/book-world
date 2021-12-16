@@ -1,6 +1,6 @@
 import React from "react";
 import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
-import { Link } from "react-router-dom";
+
 import { withRouter } from "react-router-dom";
 import {ReactComponent as GoogleIcon} from '../../resources/google-icon.svg'
 
@@ -90,7 +90,7 @@ class SignInPage extends React.Component {
                 <li>brak konieczności wprowadzania swoich danych przy kolejnych zakupach</li>
                 <li>możliwość otrzymania rabatów i kuponów promocyjnych</li>
             </ul>
-            <button className='sign-in-page__left--form--submit-button' onClick={() => history.push('/sign-up')}>Zarejestruj się</button>
+            <button className='sign-in-page__right--submit-button' onClick={() => history.push('/sign-up')}>Zarejestruj się</button>
         </div>   
     </section>
             )

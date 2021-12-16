@@ -4,12 +4,13 @@
 
     display: grid;
     grid-template-columns: [left-start]0.65fr [left-end right-start] 0.35fr [right-end];
-   
+    grid-template-rows: [row-1-start] 0.1fr [row-1-end row-2-start] 0.9fr [row-2-end];
     margin: 3rem calc(1rem + 2.2vw);
+    min-height: 70vh;
     
     &__empty-cart {
       grid-column: left-start / left-end; 
-
+      grid-row: row-2-start / row-2-end;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -17,13 +18,14 @@
       font-size: 3rem;
       background-color: white;
       margin-right: calc(1rem + 1.5vw);
-      
+      height: 10rem;
     }
 
 
     &--title { 
         grid-column: left-start / left-end; 
-      
+        grid-row: row-1-start / row-1-end;
+        
         padding: 1rem 2rem;
         margin-right: calc(1rem + 1.5vw);
         font-size: 2rem;
@@ -34,8 +36,8 @@
 
     .payment-page__main {
       grid-column: left-start / left-end; 
-
-
+     
+     
         
     }
 
@@ -52,13 +54,77 @@
     background-color: white;
 
 
+          &__stripe-payment {
+          font-size: 1.2rem;
+          
+         
+         
+          &--message {
+            padding-top: 1rem;
+            color: red;
+            font-weight: 600;
+
+            &--data {
+              font-weight: normal;
+            }
+            
+          }
+            
+          }
+
+
           &--title {
             font-size: 2rem;
           }
 
-          &--payment {
+          &--amount {
             color: orange;
             font-size: 2.2rem;
           }
+    }
+
+    @media screen and (max-width: 1000px) {
+      & {
+        margin: 2rem 1.5rem;
+      
+      }
+      
+    }
+
+    @media screen and (max-width: 430px) {
+      & {
+        grid-template-rows: [row-1-start] 0.1fr [row-1-end row-2-start] 0.7fr [row-2-end row-3-start]0.2fr[row-3-end];
+        &__empty-cart {
+          grid-column: left-start / right-end;
+          height: 95%;
+          margin: 0;
+        }
+
+        .payment-page__main {
+          grid-column: left-start / right-end;
+        }
+
+        &--title {
+          grid-column: left-start / right-end;
+          margin: 0;
+        }
+
+        &__right {
+          grid-column: left-start / right-end;
+          grid-row: row-2-end / row-3-end
+        }
+      
+      }
+      
+    }
+
+    @media screen and (max-width: 360px) {
+      &__empty-cart{
+        font-size: 2.5rem;
+      }
+      &--title {
+        font-size: 1.7rem;
+        text-align: center;
+      }
     }
 }

@@ -2,34 +2,32 @@ import React from "react";
 import { connect } from "react-redux";
 import './item-details-page.styles.scss'
 import { Link} from 'react-router-dom'
-import { selectCurrentItem } from "../../redux/cart/cart.selector";
-import { addItem } from "../../redux/cart/cart.action";
+import { selectCurrentItem, selectHiddenStatusOfImage } from "../../redux/cart/cart.selector";
+import { addItem, toggleHiddenImage } from "../../redux/cart/cart.action";
 
 
-const ItemDetailsPage = ({oneItem, addItem}) => {
-    
-    console.log('ItemDetailsPage;' , oneItem)
-   
+const ItemDetailsPage = ({oneItem, addItem, hiddenImage, toggleHiddenImage}) => {
+
     const {name, author, image, price, coverType, series, pages} = oneItem.item;
-    // const {linkUrl} = oneItem
+    
     return (
         <section className='item-details-page'>
             
-            <div className='item-details-page__links'>
-                <Link to='/'>Sklep book-world</Link>
+            <div className='item-details-page__links-to-categories'>
+                <Link className='item-details-page__links-to-categories--link' to='/'>Sklep book-world</Link>
                 <span> / </span>
-                <Link to={`/${oneItem.url}`}>{oneItem.title}</Link>
+                <Link className='item-details-page__links-to-categories--link' to={`/${oneItem.url}`}>{oneItem.title}</Link>
             </div>
             
-            <div className = 'item-details-page__main'>
-                <div className='item-details-page__main__img-container'>
-                  <img className='item-details-page__main__img-container--image' 
-                  src={image} alt="" />  
+            <div className = {hiddenImage ? 'item-details-page__main hidden-active' : 'item-details-page__main'}>
+                <div className='item-details-page__main__img-container' onClick={toggleHiddenImage}>
+                  <img className='item-details-page__main__img-container--image'
+                  src={image} alt=""  />  
                 </div>
                 <div className='item-details-page__main__info'>
                    <div className= 'item-details-page__main__info--title'>{name}</div>
                     <div className= 'item-details-page__main__info--author '><span>Autor:</span> <span>{author}</span></div> 
-                    <div className= 'item-details-page__main__info--series '><span>Seria:</span> <span>{series}</span></div> 
+                    {series ? <div className= 'item-details-page__main__info--series '><span>Seria:</span> <span>{series}</span></div> : '' }
                     <div className= 'item-details-page__main__info--pages' ><span>Liczba Stron:</span> <span>{pages}</span></div> 
                 </div>
             </div>
@@ -66,12 +64,13 @@ const ItemDetailsPage = ({oneItem, addItem}) => {
 }
 
 const mapStateToProps = (state) => ({
-  
+    hiddenImage:  selectHiddenStatusOfImage(state),
     oneItem: selectCurrentItem(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    addItem: (item) => dispatch(addItem(item)) 
+    addItem: (item) => dispatch(addItem(item)), 
+    toggleHiddenImage: () => dispatch(toggleHiddenImage())
 })
 
 export default  connect(mapStateToProps, mapDispatchToProps)(ItemDetailsPage)

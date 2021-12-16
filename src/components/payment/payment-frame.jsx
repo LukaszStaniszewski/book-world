@@ -7,8 +7,7 @@ import './paymet-frame.styles.scss'
 
 const PaymentFrame = ({cartItem, addItem, removeItem, totalPrice}) => {
 const {name, author, image, price, quantity} = cartItem
-console.log('PaymentFrameState:', cartItem)
-console.log('TotalPrice:', totalPrice)
+
     return(
         
     <div className='payment-page__main__left'>

@@ -1,7 +1,13 @@
 .home-page {
     padding: 20px;
     grid-column: container-start / container-end;
-    height: inherit;
+   
     
+    
+}
 
+@media screen and (max-width: 700px){
+    .home-page {
+        padding: 10px 0px;
+    }
 }

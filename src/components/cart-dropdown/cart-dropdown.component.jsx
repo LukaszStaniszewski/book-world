@@ -7,7 +7,7 @@ import { selectCurrentItems} from "../../redux/cart/cart.selector";
 import { removeItem, toggleHidden} from '../../redux/cart/cart.action'
 
 const CartDropdown = ({item, toggleHidden, removeItem}) => {
-    console.log('item:', item)
+   
     return(
       <section className='header__cart-dropdown'>
         <h3 className='header__cart-dropdown--title'>Twój koszyk</h3>

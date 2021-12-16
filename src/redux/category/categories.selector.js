@@ -14,8 +14,7 @@ export const selectCollectionsForPreview = createSelector(
 )
 
 export const selectCollection = categoryUrlParam => {
-    
-    console.log('categoryUrlParam', categoryUrlParam)
+ 
     return(
     createSelector(
         [selectCategories],

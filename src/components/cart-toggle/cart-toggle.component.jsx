@@ -8,7 +8,7 @@ import { selectCurrentItems } from "../../redux/cart/cart.selector";
 import { ItemCount } from "../../redux/cart/cart.utils";
 
 const CartToggle = ({toggleHidden, item}) => {
-console.log('cartToggle item:', item)
+
     return(
     <div className='header__nav--links__cart__toggle' onClick={toggleHidden}> 
         <ShoppingIcon className='header__nav--links__cart__toggle--icon'></ShoppingIcon>
