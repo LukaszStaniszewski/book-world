@@ -6,7 +6,7 @@
     padding: 0 7vw;
     
     min-height: 70vh;
-    &__links {
+    &__links-to-categories {
         grid-column: main-start / main-end;
         grid-row: 1 / 2;
         padding: 1rem 0rem;
@@ -14,8 +14,11 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-
-
+        
+        &--link {
+            color: black;
+            font-size: 1.1rem;
+        }
 
         span {
             margin: 0 1rem;
@@ -160,7 +163,7 @@
         grid-column: main-start / main-end;
 
         margin-top: 4rem;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         letter-spacing: 0.05rem;
         
     }
@@ -333,12 +336,15 @@
 
             
         }
+
+        &__description {
+                grid-column: main-start / right-end;
+                width: 100%;
+                margin-top: 1rem;
+                font-size: 1.15rem;
+
     }
-    &__description {
-        grid-column: main-start / right-end;
-        width: 100%;
-        margin-top: 1rem;
-        font-size: 1.15rem;
+    
     }
 
 }

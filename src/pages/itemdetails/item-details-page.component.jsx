@@ -13,10 +13,10 @@ const ItemDetailsPage = ({oneItem, addItem, hiddenImage, toggleHiddenImage}) => 
     return (
         <section className='item-details-page'>
             
-            <div className='item-details-page__links'>
-                <Link to='/'>Sklep book-world</Link>
+            <div className='item-details-page__links-to-categories'>
+                <Link className='item-details-page__links-to-categories--link' to='/'>Sklep book-world</Link>
                 <span> / </span>
-                <Link to={`/${oneItem.url}`}>{oneItem.title}</Link>
+                <Link className='item-details-page__links-to-categories--link' to={`/${oneItem.url}`}>{oneItem.title}</Link>
             </div>
             
             <div className = {hiddenImage ? 'item-details-page__main hidden-active' : 'item-details-page__main'}>
@@ -27,7 +27,7 @@ const ItemDetailsPage = ({oneItem, addItem, hiddenImage, toggleHiddenImage}) => 
                 <div className='item-details-page__main__info'>
                    <div className= 'item-details-page__main__info--title'>{name}</div>
                     <div className= 'item-details-page__main__info--author '><span>Autor:</span> <span>{author}</span></div> 
-                    <div className= 'item-details-page__main__info--series '><span>Seria:</span> <span>{series}</span></div> 
+                    {series ? <div className= 'item-details-page__main__info--series '><span>Seria:</span> <span>{series}</span></div> : '' }
                     <div className= 'item-details-page__main__info--pages' ><span>Liczba Stron:</span> <span>{pages}</span></div> 
                 </div>
             </div>
