@@ -1,6 +1,6 @@
 .header {
     grid-column: container-start / container-end;
-
+    
     @mixin link-animation-left-to-right {
         
       &:link,

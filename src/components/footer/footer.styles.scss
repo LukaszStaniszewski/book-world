@@ -1,18 +1,16 @@
 .footer {
     grid-column: container-start / container-end;
     
-    bottom: 0;
+    
     background-color: #101820;
     padding: 1rem calc(4rem + 4.5vw);
     color: white;
     margin-top: 5rem;
     letter-spacing: 0.05;
+  
     &__frame {
-        
-        
         font-size: 1.3rem;
         display: flex;
-
         justify-content: space-between;
         font-weight: 300;
         &--about-us li:first-child,

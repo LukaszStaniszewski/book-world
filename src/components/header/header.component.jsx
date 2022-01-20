@@ -10,6 +10,7 @@ import CartDropdown  from "../cart-dropdown/cart-dropdown.component";
 
 
 import './header.styles.scss'
+import { clearCart } from "../../redux/cart/cart.action";
 
 class Header extends React.Component  {
     state = {
@@ -18,6 +19,8 @@ class Header extends React.Component  {
         dropdownMenu: null,
     }
     
+    
+
     handleClick = () => {
     const active = 'header__hamburger--active'
     if (this.state.active == null) {
@@ -39,11 +42,11 @@ class Header extends React.Component  {
     onMouseLeave = () => {
         this.setState({dropdownMenu: null})
     }
-
+   
     render() {
     const {currentUser} = this.props
     const {hidden} = this.props
-    
+    const {clearCart} = this.props;
     return (
     
     <header className="header">
@@ -107,7 +110,7 @@ class Header extends React.Component  {
                 <li className="header__nav--links__item">
                         {
                             currentUser ?( 
-                            <a href="#" className="header__nav--links__item--sign-in link-color" link-text="Wyloguj się" onClick={() => auth.signOut()} >Wyloguj się</a>
+                            <a href="#" className="header__nav--links__item--sign-in link-color" link-text="Wyloguj się" onClick={()=>{auth.signOut(); clearCart()}} >Wyloguj się</a>
                             ):(
                             <Link className="header__nav--links__item--sign-out link-color" to='/sign-in' link-text="Zaloguj się">Zaloguj się</Link>)
 
@@ -138,9 +141,13 @@ class Header extends React.Component  {
             }
 }
 
+const mapDispachToProps = dispatch => ({
+    clearCart: () => dispatch(clearCart())
+})
+
 const mapStateToProps = (state) => ({
     currentUser: selectCurrentUser(state),
     hidden: selectHiddenStatus(state)
 })
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispachToProps)(Header);

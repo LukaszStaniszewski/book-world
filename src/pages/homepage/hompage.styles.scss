@@ -1,10 +1,10 @@
 .home-page {
     padding: 20px;
     grid-column: container-start / container-end;
-   
-    
+    height:fit-content
     
 }
+
 
 @media screen and (max-width: 700px){
     .home-page {

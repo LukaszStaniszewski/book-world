@@ -14,7 +14,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   line-height: 1.9;
   background-color: #E5E5E5;
- 
+   
 }
 
 .container {
@@ -22,6 +22,7 @@ body {
   grid-template-columns: [container-start] 1fr [center-start] repeat(6, 
   [col-start] minmax(min-content, 16.67rem) [col-end])
   [center-end] 1fr [container-end]; 
+  height: 100vh;
   grid-template-rows: repeat(auto-fit minmax(min-content 90vh));
 }
 

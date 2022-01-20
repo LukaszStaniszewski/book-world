@@ -5,7 +5,7 @@ export const CartActionTypes = {
     REMOVE_ITEM: 'REMOVE_ITEM',
     TO_ITEM_DETAILS: 'TO_ITEM_DETAILS',
     DELETE_ITEM: 'DELETE_ITEM',
-    
+    CLEAR_CART: 'CLEAR_CART'
 
 }
 
