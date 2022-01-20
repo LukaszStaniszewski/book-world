@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { Switch, Route, Redirect } from "react-router-dom";
-import { auth, CreateUserProfileDocument, firestore, converCollectionsSnapshotToMap } from './firebase/firebase.utils';
-import { collection, doc, onSnapshot, getDocs } from '@firebase/firestore';
+import { auth, CreateUserProfileDocument, firestore, } from './firebase/firebase.utils';
+import { collection, doc, onSnapshot } from '@firebase/firestore';
 import { connect } from 'react-redux';
 
 import Header from './components/header/header.component';
@@ -15,7 +15,7 @@ import itemDetailsPage from './pages/itemdetails/item-details-page.component';
 import Footer from './components/footer/footer.component';
 import { selectCurrentUser } from './redux/user/user.selector'
 import {setCurrentUser} from './redux/user/user.action'
-import {updateCategories} from './redux/category/category.action'
+import { fetchCollectionStart} from './redux/category/category.action'
 import LoadingIcon from './components/loading-icon/loading-icon.component';
 import ScrollButton from './components/scroll-button/scroll-button.component';
 const HomePageLoadingIcon = LoadingIcon(HomePage)
@@ -31,7 +31,9 @@ unsubcribeFromSnapShot = null
 
 componentDidMount() {
   const {setCurrentUser} = this.props;
-  const {updateCategories} = this.props;
+  
+  
+  fetchCollectionStart()
 
   /*************** Creating user profile, saving it in Firestore, then fetching user data to app ******************/
   this.unsubcribeFromAuth = auth.onAuthStateChanged( async userAuth =>{
@@ -52,18 +54,7 @@ componentDidMount() {
     }
   })
 
-  /**************  Fetching shop data from Firestore    *****************/
 
-  getDocs(collection(firestore, "categories")).then((snapshot) => {
-   
-      const categoriesMap = converCollectionsSnapshotToMap(snapshot);
-      console.log('categoriesMap:',categoriesMap)
-      updateCategories(categoriesMap);
-      this.setState({loading: false});
-  }).catch((error) => {
-    console.log('getCategoriesError:', error)
-  });
- 
 }
 
 componentWillUnmount() {
@@ -75,7 +66,7 @@ componentWillUnmount() {
 
   render() {
     const {loading} = this.state
-    
+    const {isFetching} = this.props
      return (
     
     <div className="container">
@@ -85,8 +76,8 @@ componentWillUnmount() {
         <Route exact path='/sign-in' render={() => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInPage/>)}></Route>
         <Route exact path='/sign-up' component={SignUp}></Route>
         <Route path='/details/:linkUrl' component={itemDetailsPage}/>
-        <Route path='/cart/payment' render={(props) => <PaymetPageLoadingIcon isLoading={loading} {...props}></PaymetPageLoadingIcon>}></Route>
-        <Route path='/' render={(props) => <HomePageLoadingIcon isLoading={loading} {...props}></HomePageLoadingIcon>}></Route>   
+        <Route path='/cart/payment' render={(props) => <PaymetPageLoadingIcon isLoading={isFetching} {...props}></PaymetPageLoadingIcon>}></Route>
+        <Route path='/' render={(props) => <HomePageLoadingIcon isLoading={isFetching} {...props}></HomePageLoadingIcon>}></Route>   
       </Switch>  
      <Footer></Footer>
     </div>
@@ -96,13 +87,14 @@ componentWillUnmount() {
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: selectCurrentUser(state)
+  currentUser: selectCurrentUser(state),
+  isFetching: state.category.isFetching
 })
 
 
 const mapDispatchToProps = (dispatch) =>({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
-  updateCategories: categoriesMap => dispatch(updateCategories(categoriesMap)),
+  fetchCollectionStart: () => dispatch(fetchCollectionStart())
 })
  
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,6 +1,15 @@
-import { CategoryActionTypes } from "./category.types"
+import  CategoryActionTypes  from "./category.types"
 
-export const updateCategories = (categoriesMap) => ({
-    type: CategoryActionTypes.UPDATE_CATEGORIES,
-    payload: categoriesMap,
+export const fetchCollectionStart = () => ({
+    type: CategoryActionTypes.FETCH_CATEGORIES_START
+})
+
+export const fetchCollectionSuccess = categoriesMap => ({
+    type: CategoryActionTypes.FETCH_CATEGORIES_SUCCESS,
+    payload: categoriesMap
+})
+
+export const fetchCollectionFailure = error => ({
+    type: CategoryActionTypes.FETCH_CATEGORIES_FAILURE,
+    payload: error
 })
