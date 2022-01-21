@@ -64,7 +64,7 @@ export const converCollectionsSnapshotToMap = (categories) => {
 
 export const auth = getAuth()
 
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({ params: 'select_account' });
-export const signInWithGoogle = () => signInWithPopup(auth, provider).catch((error) => console.log(error));
+export const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ params: 'select_account' });
+export const signInWithGoogle = () => signInWithPopup(auth, googleProvider).catch((error) => console.log(error));
   

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 
 import { selectCurrentUser } from "../../redux/user/user.selector";
@@ -11,6 +10,7 @@ import CartDropdown  from "../cart-dropdown/cart-dropdown.component";
 
 import './header.styles.scss'
 import { clearCart } from "../../redux/cart/cart.action";
+import { signOutStart } from "../../redux/user/user.action";
 
 class Header extends React.Component  {
     state = {
@@ -47,6 +47,7 @@ class Header extends React.Component  {
     const {currentUser} = this.props
     const {hidden} = this.props
     const {clearCart} = this.props;
+    const {signOutStart} = this.props
     return (
     
     <header className="header">
@@ -110,7 +111,7 @@ class Header extends React.Component  {
                 <li className="header__nav--links__item">
                         {
                             currentUser ?( 
-                            <a href="#" className="header__nav--links__item--sign-in link-color" link-text="Wyloguj się" onClick={()=>{auth.signOut(); clearCart()}} >Wyloguj się</a>
+                            <a href="#" className="header__nav--links__item--sign-in link-color" link-text="Wyloguj się" onClick={()=>{signOutStart(); clearCart()}} >Wyloguj się</a>
                             ):(
                             <Link className="header__nav--links__item--sign-out link-color" to='/sign-in' link-text="Zaloguj się">Zaloguj się</Link>)
 
@@ -142,7 +143,8 @@ class Header extends React.Component  {
 }
 
 const mapDispachToProps = dispatch => ({
-    clearCart: () => dispatch(clearCart())
+    clearCart: () => dispatch(clearCart()),
+    signOutStart: () => dispatch(signOutStart())
 })
 
 const mapStateToProps = (state) => ({
