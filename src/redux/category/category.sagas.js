@@ -1,5 +1,5 @@
 import {call, all, put, takeLatest} from "redux-saga/effects"
-import { collection, doc, onSnapshot, getDocs, query} from '@firebase/firestore';
+import { collection, getDocs} from '@firebase/firestore';
 import { firestore, converCollectionsSnapshotToMap } from "../../firebase/firebase.utils";
 
 import CategoryActionTypes from "./category.types"
