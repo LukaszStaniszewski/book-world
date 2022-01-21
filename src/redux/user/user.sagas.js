@@ -5,24 +5,30 @@ import {googleProvider, auth, CreateUserProfileDocument, getCurrentUser} from ".
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "@firebase/auth";
 
 import UserActionTypes from "./user.types";
-import {signInFailure, signInSuccess, signUpFailure, signOutFailure, signOutSuccess} from "./user.action";
+import {signInFailure, signInSuccess, signUpFailure, signOutFailure, signOutSuccess, authenticationSuccess} from "./user.action";
 
-function * userRef(user, {additionalData: {history, ...otherProps}}) {
+function * userRef(user, additionalData, history) {
     console.log("history:", history)
     try{        
-        const userRef = yield call(CreateUserProfileDocument, user, otherProps) 
+        const userRef = yield call(CreateUserProfileDocument, user, additionalData) 
         const userSnapshot = yield getDoc(userRef)
         yield put(signInSuccess({id: userSnapshot.id, ...userSnapshot.data()}))   
-        yield history.push("/")
+        if(!history) return
+        yield history.history.push("/")
     } catch(error) {
         yield put(signInFailure(error))
     }
 }
 
+function* signInAfterSignUp ({payload: {user, additionalData, history}}) {
+    yield userRef(user, additionalData, history)
+
+}
+
 function* emailSignIn({payload: {email, password, history}}) {
     try{
         const {user} = yield signInWithEmailAndPassword(auth, email, password)
-        yield userRef(user, {additionalData: {history}})
+        yield put(authenticationSuccess( {user, history:{history}}))
         
     }catch(error){
         yield put(signInFailure(error))
@@ -33,7 +39,7 @@ function* emailSignIn({payload: {email, password, history}}) {
 function* googleSignIn({payload: {history}}) {
     try {
         const {user} = yield signInWithPopup(auth, googleProvider)
-        yield userRef(user, {additionalData: {history}})
+        yield put(authenticationSuccess( {user, history:{history}}))
 
     }catch(error){
         yield put(signInFailure(error)) 
@@ -43,8 +49,7 @@ function* googleSignIn({payload: {history}}) {
 function* signUp({payload: {displayName, email, password, history}}) {
     try{
         const { user } = yield createUserWithEmailAndPassword(auth, email, password)
-        yield userRef(user, {additionalData: {displayName, history}})
-       
+        yield put(authenticationSuccess( {user, additionalData:{displayName}, history:{history}}))    
     }catch(error){
         yield put(signUpFailure(error))
     }
@@ -89,11 +94,15 @@ function* onCheckUserSession() {
     yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated)
 }
 
+function* onAuthenticationSuccess() {
+    yield takeLatest(UserActionTypes.AUTHENTICATION_SUCCESS, signInAfterSignUp)
+}
 export default function* userSagas() {
     yield all([call(onGoogleSignInStart),
             call(onEmailSignInStart),
             call(onSignUpStart),
             call(onSignOutStart), 
-            call(onCheckUserSession)  
+            call(onCheckUserSession),
+            call(onAuthenticationSuccess)  
         ])
 } 

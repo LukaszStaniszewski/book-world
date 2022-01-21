@@ -46,3 +46,8 @@ export const signOutFailure = error => ({
 export const checkUserSession = () => ({
     type: UserActionTypes.CHECK_USER_SESSION,
 })
+
+export const authenticationSuccess = userCredentials => ({
+    type: UserActionTypes.AUTHENTICATION_SUCCESS,
+    payload: userCredentials
+})
