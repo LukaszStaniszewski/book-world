@@ -1,12 +1,14 @@
 import React from "react";
-import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
-
+import {connect} from "react-redux"
+import {  auth } from "../../firebase/firebase.utils";
+import { signInWithEmailAndPassword } from "@firebase/auth";
 import { withRouter } from "react-router-dom";
 import {ReactComponent as GoogleIcon} from '../../resources/google-icon.svg'
 
 import FormInput from "../../components/form-input/form-input.component";
+import { googleSignInStart, emailSignInStart } from "../../redux/user/user.action";
 import './sign-in-page.styles.scss'
-import { signInWithEmailAndPassword } from "@firebase/auth";
+
 
 
 
@@ -22,16 +24,13 @@ class SignInPage extends React.Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-
+        const {emailSignInStart} = this.props
         const{email, password} = this.state
-        try{
-            await signInWithEmailAndPassword(auth, email, password)
-        }catch(error){
-            console.error(error)
-        }
+       
+        emailSignInStart(email, password)
         
-
-        this.setState({email: '', password: ''})
+        
+       
     }
 
     handleChange = (event) => {
@@ -42,12 +41,13 @@ class SignInPage extends React.Component {
 
     render() {
         const {history} = this.props
+        const {googleSignInStart} = this.props
         return( 
     <section className='sign-in-page'>
         <div className='sign-in-page__google-sign-in'>
             <span className='sign-in-page__google-sign-in--title'>Kontynuuj z:</span>
             <div className='sign-in-page__google-sign-in__frame'>
-                <button className='sign-in-page__google-sign-in__frame--button'  onClick={signInWithGoogle}>Zaloguj się z Google</button>       
+                <button className='sign-in-page__google-sign-in__frame--button'  onClick={googleSignInStart}>Zaloguj się z Google</button>       
                 <GoogleIcon className='sign-in-page__google-sign-in__frame--icon'></GoogleIcon>
             </div>
         </div>
@@ -90,11 +90,17 @@ class SignInPage extends React.Component {
                 <li>brak konieczności wprowadzania swoich danych przy kolejnych zakupach</li>
                 <li>możliwość otrzymania rabatów i kuponów promocyjnych</li>
             </ul>
-            <button className='sign-in-page__right--submit-button' onClick={() => history.push('/sign-up')}>Zarejestruj się</button>
+            <button className='sign-in-page__right--submit-button' type='button' onClick={() => history.push('/sign-up')}>Zarejestruj się</button>
         </div>   
     </section>
             )
     }
 }
 
-export default withRouter(SignInPage);
+const mapDispatchToProps = dispatch =>({
+    googleSignInStart: () => dispatch(googleSignInStart()),
+    emailSignInStart: (email, password) => dispatch(emailSignInStart({email, password}))
+
+})
+
+export default connect(null, mapDispatchToProps)(withRouter(SignInPage));

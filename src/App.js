@@ -31,28 +31,28 @@ unsubcribeFromSnapShot = null
 
 componentDidMount() {
   const {setCurrentUser} = this.props;
-  
+  const {fetchCollectionStart} = this.props
   
   fetchCollectionStart()
 
   /*************** Creating user profile, saving it in Firestore, then fetching user data to app ******************/
-  this.unsubcribeFromAuth = auth.onAuthStateChanged( async userAuth =>{
-    if(userAuth) {
+  // this.unsubcribeFromAuth = auth.onAuthStateChanged( async userAuth =>{
+  //   if(userAuth) {
     
-      await CreateUserProfileDocument(userAuth);
-      onSnapshot(doc(firestore, 'users', userAuth.uid), doc => {
-        setCurrentUser({
+  //     await CreateUserProfileDocument(userAuth);
+  //     onSnapshot(doc(firestore, 'users', userAuth.uid), doc => {
+  //       setCurrentUser({
           
-            id: doc.id,
-            ...doc.data()   
-        });
+  //           id: doc.id,
+  //           ...doc.data()   
+  //       });
         
           
-      });
-    } else {
-      setCurrentUser(userAuth)
-    }
-  })
+  //     });
+  //   } else {
+  //     setCurrentUser(userAuth)
+  //   }
+  // })
 
 
 }

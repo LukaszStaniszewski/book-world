@@ -5,25 +5,22 @@ import { firestore, converCollectionsSnapshotToMap } from "../../firebase/fireba
 import CategoryActionTypes from "./category.types"
 import { fetchCollectionSuccess, fetchCollectionFailure } from "./category.action"
 
-export function* fetchCollectionsAsync() {
-    yield console.log("I am fired")
+function* fetchCollectionsAsync() {
+
     try {
         const collectionRef = yield collection(firestore, "categories")
-        yield console.log('collectionRef:', collectionRef)
-        const snapshot = yield getDocs(collectionRef)
-        yield console.log('snapshot:', snapshot)    
+        const snapshot = yield getDocs(collectionRef) 
         const collectionsMap = yield call(converCollectionsSnapshotToMap, snapshot)
-        yield console.log("collectionsMap:",  collectionsMap)
         yield put(fetchCollectionSuccess(collectionsMap))
     } catch(error) {
         yield put(fetchCollectionFailure(error))
     }
 }
 
-export function* fetchCollectionsStart() {
+function* fetchCollectionsStart() {
     yield takeLatest(CategoryActionTypes.FETCH_CATEGORIES_START, fetchCollectionsAsync)
 }
 
 export function* categoriesSagas() {
-    yield all([call(fetchCollectionsAsync)])
+    yield all([call(fetchCollectionsStart)])
 }

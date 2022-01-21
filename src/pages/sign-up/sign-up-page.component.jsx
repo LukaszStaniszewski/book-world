@@ -1,7 +1,9 @@
-import { createUserWithEmailAndPassword } from "@firebase/auth";
 import React from "react";
+import { connect } from "react-redux";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
 import { auth, CreateUserProfileDocument, signInWithGoogle } from "../../firebase/firebase.utils";
-
+import { withRouter } from "react-router-dom";
+import { signUpStart } from "../../redux/user/user.action";
 import {ReactComponent as GoogleIcon} from '../../resources/google-icon.svg'
 import FormInput from "../../components/form-input/form-input.component";
 
@@ -22,21 +24,15 @@ constructor(props) {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-
         const {displayName, email, password, confirmPassword} = this.state;
-
+        const {signUpStart} = this.props
+        const {history} = this.props
         if (password !== confirmPassword) {
             alert('hasła się nie są identyczne')
             return
         }
 
-        try{
-            const { user } = await createUserWithEmailAndPassword(auth, email, password)
-            await CreateUserProfileDocument(user, {displayName})
-            this.setState({displayName: '', email: '', password: '', confirmPassword: ''})
-        }catch(error){
-            console.error(error);
-        }
+        signUpStart({displayName, email, password, history})
         
     }
 
@@ -102,4 +98,8 @@ constructor(props) {
    
 }
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+    signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
+})
+
+export default connect(null, mapDispatchToProps)(withRouter(SignUp));
