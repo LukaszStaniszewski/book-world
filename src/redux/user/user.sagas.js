@@ -5,7 +5,7 @@ import {googleProvider, auth, CreateUserProfileDocument} from "../../firebase/fi
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "@firebase/auth";
 
 import UserActionTypes from "./user.types";
-import {signInFailure, signInSuccess, signUpFailure} from "./user.action";
+import {signInFailure, signInSuccess, signUpFailure, signOutFailure, signOutSuccess} from "./user.action";
 
 function * userRef(user, additionalData) {
     
@@ -48,6 +48,15 @@ function* signUp({payload: {displayName, email, password, history}}) {
     }
 }
 
+function* signOut() {
+    try{
+        yield auth.signOut()
+        yield put(signOutSuccess())
+    } catch(error) {
+        yield put(signOutFailure(error))
+    }
+}
+
 function* onEmailSignInStart() {
     yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, emailSignIn)
 }
@@ -60,10 +69,15 @@ function* onSignUpStart() {
     yield takeLatest(UserActionTypes.SIGN_UP_START, signUp)
 }
 
+function* onSignOutStart() {
+    yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut)
+}
+
 
 export default function* userSagas() {
     yield all([call(onGoogleSignInStart),
             call(onEmailSignInStart),
-            call(onSignUpStart),     
+            call(onSignUpStart),
+            call(onSignOutStart)     
         ])
 }
