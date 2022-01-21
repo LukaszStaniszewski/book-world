@@ -86,7 +86,7 @@ class Header extends React.Component  {
         </div>  
             
             <Link className="header__nav__logo" to='/'>
-            <img className="header__nav__logo--image" src="https://i.ibb.co/D42cBcw/book.png"></img>
+            <img className="header__nav__logo--image" alt="" src="https://i.ibb.co/D42cBcw/book.png"></img>
                 <div className="header__nav__logo--name" > 
                     <div className="first-word">Book</div>
                     

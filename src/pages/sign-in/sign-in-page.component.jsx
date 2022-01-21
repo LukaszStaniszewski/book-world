@@ -1,7 +1,5 @@
 import React from "react";
 import {connect} from "react-redux"
-import {  auth } from "../../firebase/firebase.utils";
-import { signInWithEmailAndPassword } from "@firebase/auth";
 import { withRouter } from "react-router-dom";
 import {ReactComponent as GoogleIcon} from '../../resources/google-icon.svg'
 
@@ -26,8 +24,8 @@ class SignInPage extends React.Component {
         event.preventDefault();
         const {emailSignInStart} = this.props
         const{email, password} = this.state
-       
-        emailSignInStart(email, password)
+        const {history} = this.props
+        emailSignInStart(email, password, history)
         
         
        
@@ -47,7 +45,7 @@ class SignInPage extends React.Component {
         <div className='sign-in-page__google-sign-in'>
             <span className='sign-in-page__google-sign-in--title'>Kontynuuj z:</span>
             <div className='sign-in-page__google-sign-in__frame'>
-                <button className='sign-in-page__google-sign-in__frame--button'  onClick={googleSignInStart}>Zaloguj się z Google</button>       
+                <button className='sign-in-page__google-sign-in__frame--button' type="button" onClick={() => googleSignInStart(history)}>Zaloguj się z Google</button>       
                 <GoogleIcon className='sign-in-page__google-sign-in__frame--icon'></GoogleIcon>
             </div>
         </div>
@@ -98,8 +96,8 @@ class SignInPage extends React.Component {
 }
 
 const mapDispatchToProps = dispatch =>({
-    googleSignInStart: () => dispatch(googleSignInStart()),
-    emailSignInStart: (email, password) => dispatch(emailSignInStart({email, password}))
+    googleSignInStart: (history) => dispatch(googleSignInStart({history})),
+    emailSignInStart: (email, password, history) => dispatch(emailSignInStart({email, password, history}))
 
 })
 

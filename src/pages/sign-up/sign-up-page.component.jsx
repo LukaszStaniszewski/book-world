@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createUserWithEmailAndPassword } from "@firebase/auth";
-import { auth, CreateUserProfileDocument, signInWithGoogle } from "../../firebase/firebase.utils";
+
 import { withRouter } from "react-router-dom";
-import { signUpStart } from "../../redux/user/user.action";
+import { signUpStart,googleSignInStart } from "../../redux/user/user.action";
 import {ReactComponent as GoogleIcon} from '../../resources/google-icon.svg'
 import FormInput from "../../components/form-input/form-input.component";
 
@@ -42,12 +41,14 @@ constructor(props) {
     }
 
     render() {
+        const {googleSignInStart} = this.props
+        const {history} = this.props
         return(
             <section className='sign-up-page'>
                
                 <div className='sign-up-page__main'>
                     <div className='sign-up-page__main__google-sign-in'>
-                        <button className='sign-up-page__main__google-sign-in--button' onClick={signInWithGoogle}>Zaloguj się z Google</button>
+                        <button className='sign-up-page__main__google-sign-in--button' onClick={() => googleSignInStart(history)}>Zaloguj się z Google</button>
                         <GoogleIcon className='sign-up-page__main__google-sign-in--icon'></GoogleIcon>
                     </div>
                     <form className='sign-up-page__main--form' onSubmit={this.handleSubmit}>
@@ -99,6 +100,7 @@ constructor(props) {
 }
 
 const mapDispatchToProps = dispatch => ({
+    googleSignInStart: (history) => dispatch(googleSignInStart({history})),
     signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
 })
 
