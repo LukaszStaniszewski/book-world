@@ -42,3 +42,10 @@ Linki do plików na githubie zawierających kod dotyczący logowania użytkownik
 
 - [Akcje, reducer umożliwiające dodawanie, usuwanie przedmiotów do koszyka](https://github.com/LukaszStaniszewski/book-world/tree/master/src/redux/cart)
 
+**4. Szczegółowy opis przedmiotu**
+![](https://i.ibb.co/qMWbSQF/Screen-Shot-2022-01-24-at-20-36-30-PM.png)
+
+- [Komponent nadający wygląd stronie](https://github.com/LukaszStaniszewski/book-world/tree/master/src/pages/itemdetails)
+
+
+
