@@ -5,8 +5,6 @@ const INITIAL_STATE = {
     hidden: true,
     hiddenImage: true,
     cartItems: [],
-    oneItem: null,
-  
 }
 
 const cartReducer = (state=INITIAL_STATE, action) => {
@@ -34,14 +32,6 @@ const cartReducer = (state=INITIAL_STATE, action) => {
                 ...state,
                 cartItems: RemoveOneItemFromCart(state.cartItems, action.payload)
             }
-
-            
-        case CartActionTypes.TO_ITEM_DETAILS:
-            return {
-                ...state,
-                oneItem: action.payload
-            }
-        
         case CartActionTypes.CLEAR_CART:
             return {
                 ...state,

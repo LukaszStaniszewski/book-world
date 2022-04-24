@@ -1,36 +1,36 @@
-import React from "react";
+import {useState, useEffect} from "react"
 import { connect } from "react-redux";
-import { selectCollection } from "../../redux/category/categories.selector";
+import { useParams } from "react-router-dom";
+import { selectCategories } from "../../redux/category/categories.selector";
 
 import './items-page.styles.scss'
 import ItemFrame from "../../components/item-frame/item-frame.component";
 
-const ItemsPage = ({match, category}) => {
-
-    const {items} = category
+const ItemsPage = ({categories}) => {
+    const {category} = useParams()
+    const [products, setProducts] = useState(categories[category])
+    
+    useEffect(() => {
+        setProducts(categories[category])
+    }, [category, categories])
+    
     return(
         <section className='items-page'>
             <div className= 'items-page--title'>
-                {category.title}
+                
             </div>
-           
-                
-                
-                    {
-                        items.map((item) =>(
-                           <ItemFrame key={item.id} item={item} title={category.title} url={category.linkUrl}></ItemFrame> 
-                        ))
-                    }
-                    
-            
-          
+                {
+                    products.items.map(item =>
+                        <ItemFrame key={item.id} item={item}/>
+                    )
+                }
         </section>
     )
   
 }
 
-const mapStateToProps = (state, ownProps) => ({   
-    category: selectCollection(ownProps.match.params.categoryId)(state)  
+const mapStateToProps = (state) => ({   
+    categories: selectCategories(state)  
 })
 
 export default connect(mapStateToProps)(ItemsPage);

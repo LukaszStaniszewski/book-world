@@ -29,6 +29,7 @@ const Footer = () => (
             
         </div>
             <div className='footer--phone-number'>Wsparcie klienta: 111-111-111</div>
+            <div className="footer--copyright">Copryright 2022 &copy; Łukasz Staniszewski</div>
     </section>
 )
 

@@ -1,29 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addItem, toItemDetails } from "../../redux/cart/cart.action";
-import { withRouter } from 'react-router-dom';
+import { addItem} from "../../redux/cart/cart.action";
 import './item-frame.styles.scss'
 
 
+const ItemFrame = ({item, addItem}) => {
 
-const ItemFrame = ({item, addItem, toItemDetails, history, title, url}) => {
-
-const {image , name , author, price, coverType, bookCover} = item;
-
+const {image , name , author, price, coverType, bookCover, linkUrl} = item;
 
 const bookCoverType = () => {
 if (coverType === undefined) {
     return bookCover
 }  return coverType
 }
-const itemTwo = {title: title, item: item, url: url}
-const linkUrl = `${name.toLowerCase().replaceAll('.', '-').replaceAll(' ','-')}-${author.toLowerCase().replaceAll(' ', '-')}`
-
 
 return (
     <div className="items-page__frame">
-        <div className='items-page__frame--info' onClick={()=> toItemDetails(itemTwo)}  >
-                <img className="items-page__frame--info--image"  onClick={() => history.push(`details/${linkUrl}`)} src={image} alt="" />    
+        <div className='items-page__frame--info' >
+                <Link className="items-page__frame--info--image"  style={{backgroundImage: `url(${image})`}}  to = {`/shop/details/${linkUrl}`} src={image} alt={name} />    
                 <div className="items-page__frame--info__item-details">
                     <button className="items-page__frame--info__item-details--button" onClick={() => addItem(item)}>Dodaj do koszyka</button>
                     <h3 className="items-page__frame--info__item-details--title">{name}</h3>
@@ -38,9 +33,8 @@ return (
 
 const mapDispatchToProps = (dispatch) => ({
     addItem: (item) => dispatch(addItem(item)),
-    toItemDetails: (item) => dispatch(toItemDetails(item))
 })
 
-export default withRouter(connect(null, mapDispatchToProps)(ItemFrame));
+export default connect(null, mapDispatchToProps)(ItemFrame);
 
 
