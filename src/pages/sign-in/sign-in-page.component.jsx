@@ -8,8 +8,6 @@ import { googleSignInStart, emailSignInStart } from "../../redux/user/user.actio
 import './sign-in-page.styles.scss'
 
 
-
-
 class SignInPage extends React.Component {
     constructor(props) {
         super(props)

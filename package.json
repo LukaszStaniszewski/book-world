@@ -1,6 +1,9 @@
 {
   "name": "bookworld",
   "version": "1.0.0",
+  "homepage": "https://book-word.lukaszstaniszewski.com/",
+  "repository": "https://github.com/LukaszStaniszewski/book-world",
+  "author": "Łukasz Staniszewski <staniszewski.contact@gmail.com>",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
