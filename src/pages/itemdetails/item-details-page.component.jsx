@@ -1,14 +1,12 @@
-import React from "react";
 import { connect } from "react-redux";
-import './item-details-page.styles.scss'
 import { Link} from 'react-router-dom'
-import { selectCurrentItem, selectHiddenStatusOfImage } from "../../redux/cart/cart.selector";
+import { selectHiddenStatusOfImage } from "../../redux/cart/cart.selector";
 import { addItem, toggleHiddenImage } from "../../redux/cart/cart.action";
 
+import './item-details-page.styles.scss'
 
-const ItemDetailsPage = ({oneItem, addItem, hiddenImage, toggleHiddenImage}) => {
-
-    const {name, author, image, price, coverType, series, pages} = oneItem.item;
+const ItemDetailsPage = ({item: {item, url, title}, addItem, hiddenImage, toggleHiddenImage}) => {
+    const {name, author, image, price, coverType, series, pages} = item;
     
     return (
         <section className='item-details-page'>
@@ -16,7 +14,7 @@ const ItemDetailsPage = ({oneItem, addItem, hiddenImage, toggleHiddenImage}) => 
             <div className='item-details-page__links-to-categories'>
                 <Link className='item-details-page__links-to-categories--link' to='/'>Sklep book-world</Link>
                 <span> / </span>
-                <Link className='item-details-page__links-to-categories--link' to={`/${oneItem.url}`}>{oneItem.title}</Link>
+                <Link className='item-details-page__links-to-categories--link' to={`/shop/${url}`}>{title}</Link>
             </div>
             
             <div className = {hiddenImage ? 'item-details-page__main hidden-active' : 'item-details-page__main'}>
@@ -44,7 +42,7 @@ const ItemDetailsPage = ({oneItem, addItem, hiddenImage, toggleHiddenImage}) => 
                             <span className='item-details-page__right__book-price__frame--span-1'>Odbiór w salonie: 0zł</span>
                             <span className='item-details-page__right__book-price__frame--span-2'>Darmowa dostawa od 40zł</span>
                             <span className='item-details-page__right__book-price__frame--span-3'>Wysyłamy w 24 godziny</span>
-                            <button className="item-details-page__right__book-price__frame--button" onClick={() => addItem(oneItem.item)}>Dodaj do koszyka</button>
+                            <button className="item-details-page__right__book-price__frame--button" onClick={() => addItem(item)}>Dodaj do koszyka</button>
                             
                         </div>
                 </div>
@@ -65,7 +63,6 @@ const ItemDetailsPage = ({oneItem, addItem, hiddenImage, toggleHiddenImage}) => 
 
 const mapStateToProps = (state) => ({
     hiddenImage:  selectHiddenStatusOfImage(state),
-    oneItem: selectCurrentItem(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -27,6 +27,11 @@
         font-size: 1.4rem;
         font-weight: 600;
     }
+
+    &--copyright {
+        width: max-content;
+        margin: 0 44%;
+    }
 }
 
 @media screen and (max-width: 500px) {

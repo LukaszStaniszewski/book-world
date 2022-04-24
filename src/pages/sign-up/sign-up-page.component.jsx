@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-
-import { withRouter } from "react-router-dom";
 import { signUpStart,googleSignInStart } from "../../redux/user/user.action";
 import {ReactComponent as GoogleIcon} from '../../resources/google-icon.svg'
 import FormInput from "../../components/form-input/form-input.component";
@@ -25,13 +23,12 @@ constructor(props) {
         event.preventDefault();
         const {displayName, email, password, confirmPassword} = this.state;
         const {signUpStart} = this.props
-        const {history} = this.props
         if (password !== confirmPassword) {
             alert('hasła się nie są identyczne')
             return
         }
 
-        signUpStart({displayName, email, password, history})
+        signUpStart({displayName, email, password})
         
     }
 
@@ -42,13 +39,13 @@ constructor(props) {
 
     render() {
         const {googleSignInStart} = this.props
-        const {history} = this.props
+
         return(
             <section className='sign-up-page'>
                
                 <div className='sign-up-page__main'>
                     <div className='sign-up-page__main__google-sign-in'>
-                        <button className='sign-up-page__main__google-sign-in--button' onClick={() => googleSignInStart(history)}>Zaloguj się z Google</button>
+                        <button className='sign-up-page__main__google-sign-in--button' onClick={() => googleSignInStart()}>Zaloguj się z Google</button>
                         <GoogleIcon className='sign-up-page__main__google-sign-in--icon'></GoogleIcon>
                     </div>
                     <form className='sign-up-page__main--form' onSubmit={this.handleSubmit}>
@@ -100,8 +97,8 @@ constructor(props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-    googleSignInStart: (history) => dispatch(googleSignInStart({history})),
+    googleSignInStart: () => dispatch(googleSignInStart()),
     signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
 })
 
-export default connect(null, mapDispatchToProps)(withRouter(SignUp));
+export default connect(null, mapDispatchToProps)(SignUp);

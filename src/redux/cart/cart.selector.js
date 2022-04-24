@@ -17,10 +17,6 @@ export const selectHiddenStatusOfImage = createSelector (
     cart => cart.hiddenImage
 )
 
-export const selectCurrentItem = createSelector (
-    [selectItem],
-    cart => cart.oneItem
-)
 
 export const selectCartsPrice = createSelector (
     [selectCurrentItems],

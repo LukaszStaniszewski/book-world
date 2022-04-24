@@ -5,7 +5,7 @@ export const emailSignInStart = emailAndPassword => ({
     payload: emailAndPassword
 })
 
-export const googleSignInStart = (history) => ({
+export const googleSignInStart = (history = {}) => ({
     type: UserActionTypes.GOOGLE_SIGN_IN_START,
     payload: history
 })

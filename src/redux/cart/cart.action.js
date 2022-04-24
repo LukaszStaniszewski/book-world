@@ -18,11 +18,6 @@ export const removeItem = (item) => ({
     payload: item
 })
 
-export const toItemDetails =(item) => ({
-    type: CartActionTypes.TO_ITEM_DETAILS,
-    payload: item
-})
-
 export const clearCart = () => ({
     type: CartActionTypes.CLEAR_CART,
 })

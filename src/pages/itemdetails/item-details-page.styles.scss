@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns:[main-start] 0.7fr [main-end right-start] 0.3fr [right-end];
     padding: 0 7vw;
+    min-height: 57vh;
     
     
     &__links-to-categories {
