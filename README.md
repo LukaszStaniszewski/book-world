@@ -1,7 +1,7 @@
 # book-world
 Jest to księgarnia internetowa zbudowana aby zademonstrować moją znajomość React, React-Redux, React-Saga oraz CSS, SCSS
 
-Możesz przetestować stronę bez pobierania, jest hostowana na mojej domenie: https://book-word.lukaszstaniszewski.com/
+[Możesz przetestować stronę bez pobierania, jest hostowana na mojej domenie](https://book-word.lukaszstaniszewski.com)
 ## Wykorzystane technologie
 - HTML
 - CSS
